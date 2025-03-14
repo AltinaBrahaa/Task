@@ -1,0 +1,57 @@
+/* Add.css */
+.container {
+    padding: 20px;
+    background-color:#d1d1d1;
+  }
+  
+  .Main_Add_Task_div {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 15px;
+  }
+  
+  .input-container label {
+    font-weight: bold;
+  }
+  
+  .input-container input,
+  .input-container textarea,
+  .input-container select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  button.formsubmitbutton {
+    width: 100%;
+    padding: 10px;
+    background-color: #814973;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button.formsubmitbutton:hover {
+    background-color: #814973;
+  }
+  

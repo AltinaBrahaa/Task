@@ -101,7 +101,7 @@ namespace Task.Controllers
             return NoContent();
         }
 
-       
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTaski(int id)
         {

@@ -112,3 +112,4 @@ C:\Users\blero\source\repos\Task\Task\obj\Debug\net8.0\Task.pdb
 C:\Users\blero\source\repos\Task\Task\obj\Debug\net8.0\Task.genruntimeconfig.cache
 C:\Users\blero\source\repos\Task\Task\obj\Debug\net8.0\ref\Task.dll
 C:\Users\blero\source\repos\Task\Task\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\blero\source\repos\Task\Task\obj\Debug\net8.0\Task.sourcelink.json

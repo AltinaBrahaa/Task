@@ -1,23 +1,35 @@
-import axios, {AxiosResponse} from 'axios';
-import { useEffect } from 'react';
-import './App.css';
-import React from 'react';
-import AddProduct from './AddProduct';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; 
+
+import SideBar from "./SideBar";
+import AddTask from "./AddTask"; 
+import AddProduct from "./AddProduct"; 
+import TaskList from "./TaskList";
+import ProductList from "./ProductList";
 
 function App() {
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/Product')
-    .then((response: AxiosResponse<any>) => {
-        console.log(response.data);
-    })
-  }, [])
-  
   return (
-    <div>
-      <AddProduct />
-    </div>
- 
+    <Router> {}
+      <div className="app">
+        <SideBar />
+        <div className="main-content">
+          <Routes> {}
+            {}
+            <Route path="/add-task" element={<AddTask />} /> 
+            {}
+            {}
+            <Route path="/add-product" element={<AddProduct />} /> 
+            {}
+            {}
+            <Route path="/task-list" element={<TaskList />} /> 
+            {}
+            {}
+            <Route path="/product-list" element={<ProductList />} /> 
+            {}
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
 

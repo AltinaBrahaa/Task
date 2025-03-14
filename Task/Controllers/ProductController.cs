@@ -16,14 +16,14 @@ namespace Task.Controllers
             _context = context;
         }
 
-        // GET: api/Product
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products.ToListAsync();
         }
 
-        // GET: api/Product/5
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
@@ -37,7 +37,6 @@ namespace Task.Controllers
             return product;
         }
 
-        // POST: api/Product
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
@@ -47,7 +46,7 @@ namespace Task.Controllers
             return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
         }
 
-        // PUT: api/Product/5
+      
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
@@ -65,7 +64,7 @@ namespace Task.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Product/5
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {

@@ -18,15 +18,17 @@ const AddProduct = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     try {
-      await axios.post('http://localhost:5000/api/Product', product); 
+      await axios.post('http://localhost:5222/api/Product', product); 
       setMessage('Product added successfully!');
-      setProduct({ Emri: '', Lloji: '' }); 
+      setProduct({ Emri: '', Lloji: '' });
     } catch (error) {
       setMessage('Failed to add product.');
+      console.error(error);
     }
   };
+  
 
   return (
     <div className="form-container">

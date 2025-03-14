@@ -35,7 +35,7 @@
     width: 100%;
     padding: 12px;
     border: none;
-    background-color: #a75d28;
+    background-color: #814973;
     color: white;
     font-size: 18px;
     border-radius: 4px;
@@ -43,14 +43,11 @@
     transition: background-color 0.3s ease;
   }
   
-  .submit-btn:hover {
-    background-color: #218838;
-  }
-  
+
   .message {
     text-align: center;
     font-size: 16px;
-    color: #28a745;
+    color: #814973;
     margin-top: 15px;
   }
   

@@ -25,11 +25,14 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:3003") 
+        policy.AllowAnyOrigin()  
               .AllowAnyMethod()
               .AllowAnyHeader();
     });
 });
+
+
+
 
 
 var app = builder.Build();
@@ -50,4 +53,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();                                 
+app.Run();
+
