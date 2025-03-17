@@ -2,16 +2,19 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";  
-import "./TaskList.css"; 
+import TaskEditModal from "./TaskEditModal";
+import { useNavigate } from "react-router-dom";
+import "./TaskList.css";
 
 const notify = (text: string) => toast(text);
 
-const TaskList = () => {
+const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [currentTask, setCurrentTask] = useState<any>(null); 
 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -29,7 +32,6 @@ const TaskList = () => {
     fetchTasks();
   }, []);
 
- 
   const handleDelete = async (id: number) => {
     try {
       await axios.delete(`http://localhost:5222/api/Taski/${id}`);
@@ -41,9 +43,14 @@ const TaskList = () => {
     }
   };
 
+  const handleEdit = (task: any) => {
+    setCurrentTask(task); 
+    setIsModalOpen(true);  
+  };
 
-  const handleEdit = (id: number) => {
-    navigate(`/edit-task/${id}`); 
+  const closeModal = () => {
+    setIsModalOpen(false);  
+    setCurrentTask(null);    
   };
 
   return (
@@ -62,7 +69,7 @@ const TaskList = () => {
                 <h2>{task.title}</h2>
                 <p>{task.description}</p>
                 <div className="task-actions">
-                  <button onClick={() => handleEdit(task.id)} className="edit-button">
+                  <button onClick={() => handleEdit(task)} className="edit-button">
                     Edit
                   </button>
                   <button onClick={() => handleDelete(task.id)} className="delete-button">
@@ -76,6 +83,14 @@ const TaskList = () => {
           <p>No tasks found</p>
         )}
       </div>
+
+
+      {isModalOpen && currentTask && (
+        <TaskEditModal
+          task={currentTask} 
+          closeModal={closeModal}  
+        />
+      )}
     </>
   );
 };

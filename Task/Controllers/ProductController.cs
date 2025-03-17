@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Task.Data; // Make sure you import your DbContext namespace
+using Task.Data; 
 using Task.Models;
 
 namespace Task.Controllers

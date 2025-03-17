@@ -9,11 +9,6 @@ const Sidebar = () => {
       <h2>Sidebar Task</h2>
       <ul>
         <li>
-          <Link to="/home">
-            <FaHome style={{ marginRight: "10px" }} /> Home
-          </Link>
-        </li>
-        <li>
           <Link to="/add-task">
             <FaPlusCircle style={{ marginRight: "10px" }} /> Add Task
           </Link>
@@ -24,20 +19,16 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/add-product">
-            <FaBox style={{ marginRight: "10px" }} /> Add Product
-          </Link>
-        </li>
-        <li>
           <Link to="/task-list">
             <FaBox style={{ marginRight: "10px" }} /> Task List
           </Link>
         </li>
         <li>
-          <Link to="/product-list">
-            <FaBox style={{ marginRight: "10px" }} /> Product List
+          <Link to="/user-list">
+            <FaBox style={{ marginRight: "10px" }} /> User List
           </Link>
         </li>
+   
       </ul>
     </div>
   );

@@ -18,8 +18,6 @@ const AddTask = () => {
     description: "",
   });
 
-  const token = localStorage.getItem("accessToken");
-
   const handleTaskChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setTaskValue({ ...taskValue, [e.target.name]: e.target.value });
   };

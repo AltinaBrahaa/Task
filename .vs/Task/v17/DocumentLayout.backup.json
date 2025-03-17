@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\blero\\source\\repos\\Task\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\models\\taski.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\models\\taski.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,12 +19,8 @@
       "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,20 +31,16 @@
       "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\dto\\taskidto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\controllers\\taskicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\controllers\\taskicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -62,98 +62,46 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TaskiController.cs",
-              "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\TaskiController.cs",
-              "RelativeDocumentMoniker": "Task\\Controllers\\TaskiController.cs",
-              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\TaskiController.cs",
-              "RelativeToolTip": "Task\\Controllers\\TaskiController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T12:46:13.355Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "ProductController.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "Task\\Controllers\\ProductController.cs",
-              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Task\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAowEIAAAAIAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\ProductController.cs*",
+              "RelativeToolTip": "Task\\Controllers\\ProductController.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-13T13:03:39.118Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserDto.cs",
-              "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\DTO\\UserDto.cs",
-              "RelativeDocumentMoniker": "Task\\DTO\\UserDto.cs",
-              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\DTO\\UserDto.cs",
-              "RelativeToolTip": "Task\\DTO\\UserDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-14T08:23:01.498Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Program.cs",
-              "RelativeDocumentMoniker": "Task\\Program.cs",
-              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Program.cs",
-              "RelativeToolTip": "Task\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-13T13:17:45.435Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\appsettings.json",
-              "RelativeDocumentMoniker": "Task\\appsettings.json",
-              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\appsettings.json",
-              "RelativeToolTip": "Task\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-13T13:20:28.051Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "Taski.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Models\\Taski.cs",
               "RelativeDocumentMoniker": "Task\\Models\\Taski.cs",
               "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Models\\Taski.cs",
               "RelativeToolTip": "Task\\Models\\Taski.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-13T12:45:11.106Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Task\\Data\\AppDbContext.cs",
               "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Data\\AppDbContext.cs",
               "RelativeToolTip": "Task\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBQAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-13T13:02:18.054Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Models\\Product.cs",
               "RelativeDocumentMoniker": "Task\\Models\\Product.cs",
@@ -166,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "TaskiDto.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\DTO\\TaskiDto.cs",
               "RelativeDocumentMoniker": "Task\\DTO\\TaskiDto.cs",
@@ -179,20 +127,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "Task\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\UserController.cs",
               "RelativeToolTip": "Task\\Controllers\\UserController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAgwHUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAA+wFsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-13T12:47:36.438Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Models\\User.cs",
               "RelativeDocumentMoniker": "Task\\Models\\User.cs",
@@ -202,6 +150,56 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-14T08:05:37.297Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TaskiController.cs",
+              "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\TaskiController.cs",
+              "RelativeDocumentMoniker": "Task\\Controllers\\TaskiController.cs",
+              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Controllers\\TaskiController.cs",
+              "RelativeToolTip": "Task\\Controllers\\TaskiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T12:46:13.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\DTO\\UserDto.cs",
+              "RelativeDocumentMoniker": "Task\\DTO\\UserDto.cs",
+              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\DTO\\UserDto.cs",
+              "RelativeToolTip": "Task\\DTO\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-14T08:23:01.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\appsettings.json",
+              "RelativeDocumentMoniker": "Task\\appsettings.json",
+              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\appsettings.json",
+              "RelativeToolTip": "Task\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-13T13:20:28.051Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Program.cs",
+              "RelativeDocumentMoniker": "Task\\Program.cs",
+              "ToolTip": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Program.cs",
+              "RelativeToolTip": "Task\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T13:17:45.435Z"
             },
             {
               "$type": "Document",

@@ -1,0 +1,70 @@
+
+.user-list-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .user-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .user-item {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-item h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .user-item p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .user-actions {
+    margin-top: 15px;
+  }
+  
+  .edit-button, .delete-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-button {
+    background-color: #a16e95;
+    color: white;
+  }
+  
+  .delete-button {
+    background-color: #821a13;
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background-color: #814973;
+  }
+  
+  .delete-button:hover {
+    background-color: #ea9c9b;
+  }
+  
