@@ -1,0 +1,41 @@
+# Dosjet e ndërtimit dhe skedarët e përkohshëm
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Dosjet bin/ dhe obj/
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.log
+*.ipch/
+*.cache/
+*.zip
+*.rar
+
+# Paketat NuGet
+packages/
+
+# Konfigurimet e përdoruesve lokalë
+appsettings.Development.json
+
+# Rezultatet e testit MSTest
+TestResults/
+
+# Skedarët specifikë për përdoruesin
+*.userprefs
+*.usertasks
+
+# Të tjera
+_ReSharper*/
+*.resharper
+*.resharper.user
+*.resharper.user.lock
+*.DotSettings.user
+*.dbmdl
+*.jfm
+*.pfx

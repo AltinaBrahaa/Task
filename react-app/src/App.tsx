@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Register from "./Register";
+import Login from "./Login";
+import AddTask from "./AddTask";
+import Sidebar from "./SideBar";
 
 
 
@@ -11,7 +13,13 @@ function App() {
       <div className="app">
         <div className="main-content">
           <Routes>
-            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+          <Routes>
+            <Route path="/add-task" element={<AddTask />} />
+          </Routes>
+          <Routes>
+            <Route path="/sidebar" element={<Sidebar />} />
           </Routes>
         </div>
       </div>

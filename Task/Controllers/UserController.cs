@@ -3,6 +3,7 @@ using Task.Models;
 using Task.DTO;
 using Microsoft.EntityFrameworkCore;
 using Task.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Task.Controllers
 {
@@ -11,13 +12,15 @@ namespace Task.Controllers
     public class UserController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly Authentication _authentication; // Add the Authentication field
 
-        public UserController(AppDbContext context)
+        // Modify the constructor to inject the Authentication service
+        public UserController(AppDbContext context, Authentication authentication)
         {
             _context = context;
+            _authentication = authentication;  // Initialize _authentication
         }
 
-        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetUsers()
         {
@@ -33,7 +36,6 @@ namespace Task.Controllers
             return Ok(users);
         }
 
-       
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(int id)
         {
@@ -55,25 +57,31 @@ namespace Task.Controllers
             return Ok(user);
         }
 
-        
+     //   [Authorize(Roles = "SuperAdmin")]
+
         [HttpPost]
         public async Task<ActionResult<UserDto>> PostUser(UserDto userDto)
         {
+            byte[] passwordHash, passwordSalt;
+            _authentication.CreatePasswordHash(userDto.Password, out passwordHash, out passwordSalt);
+
             var user = new User
             {
                 Emri = userDto.Emri,
-                Email = userDto.Email
+                Email = userDto.Email,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                Role = userDto.Role ?? "User"
             };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            userDto.Id = user.Id; 
+            userDto.Id = user.Id;
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, userDto);
         }
 
-        
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, UserDto userDto)
         {
@@ -97,7 +105,6 @@ namespace Task.Controllers
             return NoContent();
         }
 
-        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -112,6 +119,25 @@ namespace Task.Controllers
 
             return NoContent();
         }
+        [HttpPost("login")]
+        public async Task<ActionResult> Login([FromBody] LoginDto loginDto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
+        
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Invalid credentials" });
+            }
+
+            // Verify password
+            if (!_authentication.VerifyPasswordHash(loginDto.Password, user.PasswordHash, user.PasswordSalt))
+            {
+                return Unauthorized(new { message = "Invalid credentials" });
+            }
+
+            // Create and return access token
+            var token = _authentication.CreateAccessToken(user);
+            return Ok(new { AccessToken = token });
+        }
     }
 }
-
