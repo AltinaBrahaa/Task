@@ -1,12 +1,18 @@
-﻿using Task.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic; 
 
-public class User
+namespace Task.Models
 {
-    public int Id { get; set; }
-    public string Emri { get; set; }
-    public string Email { get; set; }
-    public byte[] PasswordHash { get; set; } = null!;
-    public byte[] PasswordSalt { get; set; } = null!;
-    public string Role { get; set; } = "User"; 
-    public ICollection<Taski> Tasks { get; set; }
+    public class User : IdentityUser
+    {
+        
+        public string Emri { get; set; }
+        public string Email { get; set; }
+        public byte[] PasswordHash { get; set; } = null!;
+        public byte[] PasswordSalt { get; set; } = null!;
+        public string Role { get; set; } = "User";
+
+        
+        public ICollection<Taski> Tasks { get; set; }
+    }
 }

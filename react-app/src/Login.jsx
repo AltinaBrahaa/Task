@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
+import { jwtDecode } from "jwt-decode"; 
 import "./Login.css";
 
 function Login() {
@@ -7,15 +9,16 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false); 
 
+  const navigate = useNavigate();  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const userCredentials = { email, password };
-
+  
     try {
-      setLoading(true); 
-
-
+      setLoading(true);
+  
       const response = await fetch("http://localhost:5222/api/User/login", {
         method: "POST",
         headers: {
@@ -23,25 +26,43 @@ function Login() {
         },
         body: JSON.stringify(userCredentials),
       });
-
+  
       if (!response.ok) {
         throw new Error("Invalid login credentials.");
       }
-
+  
       const data = await response.json();
       console.log("Login successful", data);
-
-
-      localStorage.setItem("accessToken", data.accessToken);
+  
       
-      window.location.href = "/sidebar"; 
-
+      localStorage.setItem("accessToken", data.accessToken);
+  
+     
+      const token = localStorage.getItem("accessToken");
+      console.log("Token from localStorage:", token);  
+  
+      const decodedToken = jwtDecode(token);  
+      console.log("Decoded Token:", decodedToken);  
+  
+      
+      const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+      console.log("User Role:", role); 
+  
+      
+      console.log("Navigating to:", role === "SuperAdmin" ? "/sidebar" : "/");
+      
+      
+      navigate(role === "SuperAdmin" ? "/sidebar" : "/");
+  
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.message); 
     } finally {
       setLoading(false); 
     }
   };
+
+  
+  
 
   return (
     <div className="login-container">

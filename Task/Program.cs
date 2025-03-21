@@ -8,24 +8,24 @@ using Task.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddControllers();
 
-// Swagger/OpenAPI configuration
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Connection string configuration
+
 var connectionString = builder.Configuration.GetConnectionString("MySqlConn");
 Console.WriteLine($"Connection String: {connectionString}");
 
-// Add DbContext
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
-// CORS configuration
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -36,21 +36,21 @@ builder.Services.AddCors(options =>
     });
 });
 
-// JWT Authentication Configuration
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = false, // Set to true if you have an issuer
-            ValidateAudience = false, // Set to true if you have an audience
+            ValidateIssuer = false, 
+            ValidateAudience = false, 
             ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secret-key")), // Use a secure key in production
-            ClockSkew = TimeSpan.Zero // Optional: to avoid expiration drift
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secret-key")), 
+            ClockSkew = TimeSpan.Zero 
         };
     });
 
-// Authorization policy configuration
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("SuperAdmin", policy => policy.RequireRole("SuperAdmin"));
@@ -58,11 +58,12 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("User", policy => policy.RequireRole("User"));
 });
 
-// Register the Authentication service (if you use custom Authentication class)
-builder.Services.AddScoped<Authentication>(); // If you use custom Authentication class
 
-// Configure Identity (for role management)
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+
+builder.Services.AddScoped<Authentication>(); 
+
+
+builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
@@ -70,27 +71,41 @@ var app = builder.Build();
 
 
 
-// Development-specific settings (Swagger)
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roles = new[] { "SuperAdmin", "Admin", "User" };
+
+    foreach (var role in roles)
+    {
+        var roleExist = await roleManager.RoleExistsAsync(role);
+        if (!roleExist)
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+}
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Middleware configuration
+
 app.UseHttpsRedirection();
 
-// Use CORS policy
+
 app.UseCors();
 
-// Authentication middleware (required for JWT)
+
 app.UseAuthentication();
 
-// Authorization middleware
+
 app.UseAuthorization();
 
-// Map controllers
 app.MapControllers();
 
-// Run the application
+
 app.Run();
