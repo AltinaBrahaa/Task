@@ -26,5 +26,7 @@ namespace Task.Data
         //public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<IdentityRole> Roles { get; set; }
+
+        public DbSet<Image> Images { get; set; }
     }
 }

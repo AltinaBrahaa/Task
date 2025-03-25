@@ -29,30 +29,26 @@ namespace Task.Models
             }
         }
 
-
         public string CreateAccessToken(User user)
         {
             var claims = new[]
             {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Emri),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role, user.Role) 
-         };
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()), 
+                new Claim(ClaimTypes.Name, user.Emri),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role)
+    };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret));  
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            var token = new JwtSecurityToken(
-                expires: DateTime.Now.AddHours(1), 
-                signingCredentials: creds,
-                claims: claims
+                var token = new JwtSecurityToken(
+                    expires: DateTime.Now.AddHours(1),
+                    signingCredentials: creds,
+                    claims: claims
             );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token);  
         }
-
-
-
     }
 }

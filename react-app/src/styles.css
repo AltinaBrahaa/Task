@@ -1,0 +1,83 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+  
+  .container {
+    text-align: center;
+
+  }
+  
+  .navbar {
+    background-color: #540007;
+    padding: 35px 0;
+    text-align: center;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .navbar ul li {
+    display: inline;
+  }
+  
+  .navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .navbar ul li a:hover {
+    color: #ffcc00;
+  }
+  
+  .photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .uploaded-image {
+    width: 1900px;
+    height: 500px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .upload-form input {
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .upload-form button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #540007;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .upload-form button:hover {
+    background-color: #540007;
+  }
+  

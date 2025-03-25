@@ -12,6 +12,7 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/react-router-dom": "^5.3.3",
+    "antd": "^5.24.5",
     "axios": "^1.8.3",
     "create-react-app": "^5.1.0",
     "jwt-decode": "^4.0.0",

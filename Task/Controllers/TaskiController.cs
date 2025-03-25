@@ -3,6 +3,8 @@ using Task.Models;
 using Task.DTO;
 using Microsoft.EntityFrameworkCore;
 using Task.Data;
+using System.Security.Claims;
+using System;
 
 namespace Task.Controllers
 {
@@ -58,44 +60,97 @@ namespace Task.Controllers
         [HttpPost]
         public async Task<ActionResult<TaskiDto>> PostTaski(TaskiDto taskiDto)
         {
-            var taski = new Taski
+            try
             {
-                Title = taskiDto.Title,
-                Description = taskiDto.Description,
-                UserId = taskiDto.UserId 
-            };
+              
+                var claims = User.Claims.ToList();
+                foreach (var claim in claims)
+                {
+                    Console.WriteLine($"Claim type: {claim.Type}, Claim value: {claim.Value}");
+                }
 
-            _context.Tasks.Add(taski);
-            await _context.SaveChangesAsync();
+                // Get UserId directly from the taskiDto sent by front-end
+                var userId = taskiDto.UserId;
 
-            taskiDto.Id = taski.Id;
+              
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized(new { message = "User ID is missing in the request body." });
+                }
 
-            return CreatedAtAction(nameof(GetTaski), new { id = taski.Id }, taskiDto);
+                var taski = new Taski
+                {
+                    Title = taskiDto.Title,
+                    Description = taskiDto.Description,
+                    UserId = userId 
+                };
+
+            
+                _context.Tasks.Add(taski);
+                await _context.SaveChangesAsync();
+
+                
+                taskiDto.Id = taski.Id;
+
+              
+                return CreatedAtAction(nameof(GetTaski), new { id = taski.Id }, taskiDto);
+            }
+            catch (Exception ex)
+            {
+           
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, new { message = "An error occurred while processing the request." });
+            }
         }
+
+
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTaski(int id, TaskiDto taskiDto)
         {
-            if (id != taskiDto.Id)
+            try
             {
-                return BadRequest();
-            }
+             
+                var userId = taskiDto.UserId;
 
-            var taski = await _context.Tasks.FindAsync(id);
-            if (taski == null)
+              
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Unauthorized(new { message = "User ID is missing in the request body." });
+                }
+
+               
+                var taski = await _context.Tasks.FindAsync(id);
+                if (taski == null)
+                {
+                    return NotFound();
+                }
+
+                
+                if (taski.UserId != userId)  
+                {
+                    return Unauthorized(new { message = "You are not authorized to edit this task." });
+                }
+
+               
+                taski.Title = taskiDto.Title;
+                taski.Description = taskiDto.Description;
+
+            
+                _context.Entry(taski).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return NoContent();  
+            }
+            catch (Exception ex)
             {
-                return NotFound();
+     
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, new { message = "An error occurred while processing the request." });
             }
-
-            taski.Title = taskiDto.Title;
-            taski.Description = taskiDto.Description;
-            taski.UserId = taskiDto.UserId;
-
-            _context.Entry(taski).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTaski(int id)
@@ -113,6 +168,7 @@ namespace Task.Controllers
         }
     }
 }
+
 
 
 

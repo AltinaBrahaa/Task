@@ -122,3 +122,4 @@ C:\Users\blero\source\repos\Task\Task\bin\Debug\net8.0\Microsoft.IdentityModel.P
 C:\Users\blero\source\repos\Task\Task\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\blero\source\repos\Task\Task\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\blero\source\repos\Task\Task\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\blero\source\repos\Task\Task\bin\Debug\net8.0\AutoMapper.dll

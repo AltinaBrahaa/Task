@@ -41,7 +41,7 @@ namespace Task.Controllers
             return Ok(users);
         }
 
-        // Merr përdoruesin me ID të caktuar
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<UserDto>> GetUser(string id)
         {
@@ -63,11 +63,14 @@ namespace Task.Controllers
 
             return Ok(user);
         }
-
         [HttpPost]
-
         public async Task<ActionResult<UserDto>> PostUser(UserDto userDto)
         {
+            if (string.IsNullOrEmpty(userDto.Emri) || string.IsNullOrEmpty(userDto.Email) || string.IsNullOrEmpty(userDto.Password))
+            {
+                return BadRequest(new { message = "Emri, Email, and Password are required" });
+            }
+
             byte[] passwordHash, passwordSalt;
             _authentication.CreatePasswordHash(userDto.Password, out passwordHash, out passwordSalt);
 
@@ -83,12 +86,15 @@ namespace Task.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
+            
             userDto.Id = user.Id;
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, userDto);
         }
 
-       
+
+
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(string id, UserDto userDto)
         {

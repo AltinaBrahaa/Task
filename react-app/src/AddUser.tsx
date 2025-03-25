@@ -4,9 +4,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./user.css";
 
+
 const notify = (text: string) => toast(text);
 
 interface UserValue {
+  id: string;
   emri: string;
   email: string;
   password: string;
@@ -16,6 +18,7 @@ interface UserValue {
 const AddUser = () => {
   const [loading, setLoading] = useState(false);
   const [userValue, setUserValue] = useState<UserValue>({
+    id: "",
     emri: "",
     email: "",
     password: "",
@@ -23,51 +26,72 @@ const AddUser = () => {
   });
 
   
-  const token = localStorage.getItem("token");
-
   const handleUserChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     setUserValue({ ...userValue, [e.target.name]: e.target.value });
   };
-
   const handleUserSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-
+  
+    
     const userData = {
+      id: userValue.id,
       emri: userValue.emri,
       email: userValue.email,
-      password: userValue.password, 
+      password: userValue.password,
       role: userValue.role,
     };
-
+  
+    
+    const token = localStorage.getItem("accessToken");
+  
+    
+    if (!token) {
+      console.error("Token is missing");
+      notify("Authentication failed. Please log in.");
+      setLoading(false);
+      return;
+    }
+  
     try {
+      
       const response = await axios.post(
-        `http://localhost:5222/api/User`, 
+        "http://localhost:5222/api/User",
         userData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,  
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-
+  
+      
       if (response.data) {
         setUserValue({
+          id: "",
           emri: "",
           email: "",
           password: "",
-          role: "User", 
+          role: "User",
         });
         notify("User added successfully");
       }
     } catch (error) {
+      
       if (axios.isAxiosError(error)) {
         console.error("Failed to add user:", error.response || error);
-        if (error.response?.data?.message) {
-          notify(error.response.data.message); 
+  
+        
+        if (error.response?.data?.errors) {
+          const errorMessages = Object.values(error.response.data.errors).flat();
+          notify(errorMessages.join(", ")); 
+        } else if (error.response?.data?.message) {
+         
+          notify(error.response.data.message);
         } else {
+          
           notify("Failed to add user");
         }
       } else {
@@ -78,6 +102,7 @@ const AddUser = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <>
@@ -88,6 +113,17 @@ const AddUser = () => {
         <div className="Main_Add_User_div">
           <h1>Add User</h1>
           <form onSubmit={handleUserSubmit}>
+          <div className="input-container">
+              <label>Id</label>
+              <input
+                type="text"
+                placeholder="Id"
+                name="id"
+                value={userValue.id}
+                onChange={handleUserChange}
+                required
+              />
+            </div>
             <div className="input-container">
               <label>Name</label>
               <input
@@ -133,8 +169,8 @@ const AddUser = () => {
                 required
               >
                 <option value="User">User</option>
-                <option value="SUPERADMIN">SUPERADMIN</option>
-                <option value="ADMIN">ADMIN</option>
+                <option value="SUPERADMIN">SuperAdmin</option>
+                <option value="ADMIN">Admin</option>
               </select>
             </div>
 

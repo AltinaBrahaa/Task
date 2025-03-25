@@ -1,22 +1,35 @@
+using Task.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Task.Mappings;
+using AutoMapper;
 using Task.Data;
+using Task.Interfaces;
+using Task.Mappings;
 using Task.Models;
+using Task.Repositories;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
+
+// Add AutoMapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
+builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped<IImageRepository, ImageRepository>();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Task API", Version = "v1" });
 
-    // Shto mbështetje për JWT Authorization në Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -69,7 +82,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = false,
             ValidateAudience = false,
             ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-secret-key")),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this-is-a-very-long-secret-key-for-hmac-sha512-algorithm-now-with-512-bits-long!")),
             ClockSkew = TimeSpan.Zero
         };
     });
@@ -109,7 +122,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles(); // Enable static file serving
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+    RequestPath = "/Images"
+});
 app.UseHttpsRedirection();
 app.UseCors();
 app.UseAuthentication();

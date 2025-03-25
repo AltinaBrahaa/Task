@@ -8,7 +8,8 @@ import Sidebar from "./SideBar";
 import AddUser from "./AddUser";
 import TaskList from "./TaskList";
 import UserList from "./UserList";
-
+import Home from "./Home";
+import ImageUpload from "./ImageUpload";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
             <Route path="/login" element={<Login />} />
           </Routes>
           <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/upload" element={<ImageUpload />} />
             <Route path="/add-task" element={<AddTask />} />
             <Route path="/add-user" element={<AddUser />} />
             <Route path="/task-list" element={<TaskList />} />

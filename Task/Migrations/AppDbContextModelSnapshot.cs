@@ -154,6 +154,37 @@ namespace Task.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Task.Models.Image", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("ImageId"));
+
+                    b.Property<string>("FileDescription")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<long>("FileSizeInBytes")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("ImageId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("Task.Models.Product", b =>
                 {
                     b.Property<int>("Id")
