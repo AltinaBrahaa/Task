@@ -37,11 +37,11 @@ function Login() {
       const token = data.accessToken;
       localStorage.setItem("accessToken", token);
   
-      // Decode the token to extract userId
+      
       const decodedToken = jwtDecode(token);
       console.log("Decoded Token:", decodedToken);
   
-      // Instead of `decodedToken.userId`, we get it from the claim nameidentifier
+     
       const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
       console.log("User ID from Token:", userId);
   
@@ -57,8 +57,8 @@ function Login() {
       const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
       console.log("User Role:", role);
   
-      console.log("Navigating to:", role === "SuperAdmin" ? "/sidebar" : "/");
-      navigate(role === "SuperAdmin" ? "/sidebar" : "/");
+      console.log("Navigating to:", role === "SuperAdmin" ? "/sidebar" : "/home");
+      navigate(role === "SuperAdmin" ? "/sidebar" : "/home");
   
     } catch (error) {
       setErrorMessage(error.message);
@@ -99,7 +99,7 @@ function Login() {
             />
           </div>
 
-          <button type="submit" disabled={loading}>
+          <button class="btn "type="submit" disabled={loading}>
             {loading ? "Signing in..." : "Sign In"}
           </button>
 

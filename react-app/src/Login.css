@@ -39,15 +39,15 @@ body {
   }
   
   input {
-    width: 100%;
+    width: 95%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
   
-  button {
-    width: 100%;
+  .btn {
+    width: 101%;
     padding: 10px;
     background-color: rgba(106, 20, 64, 0.8);
     color: white;

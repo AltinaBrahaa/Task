@@ -3,6 +3,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./user.css";
+import Sidebar from "./SideBar";
 
 
 const notify = (text: string) => toast(text);
@@ -106,10 +107,11 @@ const AddUser = () => {
 
   return (
     <>
+    <Sidebar/>
       <div style={{ position: "fixed", top: 0, right: 0, zIndex: 9999 }}>
         <ToastContainer />
       </div>
-      <div className="container">
+      <div className="containeer">
         <div className="Main_Add_User_div">
           <h1>Add User</h1>
           <form onSubmit={handleUserSubmit}>
@@ -185,3 +187,5 @@ const AddUser = () => {
 };
 
 export default AddUser;
+
+

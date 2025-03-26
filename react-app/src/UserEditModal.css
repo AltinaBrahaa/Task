@@ -72,3 +72,11 @@
 .modal-content input[type="submit"]:hover {
     background-color: #92066f;
 }
+.editform{
+    width: 270px;
+    padding: 20px;
+    margin-left: 3px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}

@@ -4,6 +4,7 @@ import { message } from "antd";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import "./upload.css";
+import Sidebar from "./SideBar";
 
 const ImageUpload = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -42,9 +43,11 @@ const ImageUpload = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
+  
+      console.log("Fetched images:", response.data); 
+  
       if (response.data) {
-        setImages(response.data); 
+        setImages(response.data);
       } else {
         message.error("No images found.");
       }
@@ -53,6 +56,7 @@ const ImageUpload = () => {
       message.error("Error fetching images.");
     }
   };
+  
 
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
@@ -110,6 +114,12 @@ const ImageUpload = () => {
   };
 
   const handleDeleteImage = async (imageId) => {
+    console.log("Deleting image with ID:", imageId);  
+    if (!imageId || isNaN(imageId)) {
+      message.error("Invalid image ID.");
+      return;
+    }
+
     try {
       const token = localStorage.getItem("accessToken");
       const response = await axios.delete(`http://localhost:5222/api/images/${imageId}`, {
@@ -118,7 +128,7 @@ const ImageUpload = () => {
         },
       });
 
-      if (response.status === 200) {
+      if (response.status === 204) {
         message.success("Image deleted successfully!");
         fetchImages(); 
       } else {
@@ -128,22 +138,25 @@ const ImageUpload = () => {
       console.error("Error deleting image:", error);
       message.error("Error deleting image. Please try again.");
     }
-  };
+};
 
+  
+  
+  
   return (
     <div>
       <Navbar />
-      <div className="container">
+      <div className="containerr">
         {isSuperAdmin ? (
-          <form onSubmit={handleImageUpload}>
-            <input type="file" onChange={handleImageChange} accept="image/*" required />
-            <input
+          <form class="up" onSubmit={handleImageUpload}>
+            <input class="upinput" type="file" onChange={handleImageChange} accept="image/*" required />
+            <input class="upinput"
               type="text"
               placeholder="Përshkrimi i fotos"
               value={fileDescription}
               onChange={handleDescriptionChange}
             />
-            <input
+            <input class="upinput"
               type="text"
               placeholder="Emri i fotos"
               value={fileName}
@@ -162,27 +175,31 @@ const ImageUpload = () => {
           </div>
         )}
 
+
         <div className="image-gallery">
           {images.length > 0 ? (
-            images.map((image) => (
-              <div className="image-card" key={image.id}>
-                <img src={`http://localhost:5222${image.filePath}`} alt={image.fileName} />
-                <div className="image-info">
-                  <p>{image.fileName}</p>
-                  <p>{image.fileDescription}</p>
-                  <button onClick={() => handleDeleteImage(image.id)}>Delete</button>
-                  <button>Edit</button>
+            images.map((image) => {
+              console.log("Image ID:", image.imageId);  
+              return (
+                <div className="image-card" key={image.imageId}>  
+                  <img src={`http://localhost:5222${image.filePath}`} alt={image.fileName} />
+                  <div className="image-info">
+                    <p>{image.fileName}</p>
+                    <p>{image.fileDescription}</p>
+                    <button onClick={() => handleDeleteImage(image.imageId)}>Delete</button>  
+                  
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           ) : (
             <p>No images uploaded.</p>
           )}
         </div>
       </div>
     </div>
-  );
-};
+    );
+  };
 
 export default ImageUpload;
 

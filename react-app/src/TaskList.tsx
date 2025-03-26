@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import TaskEditModal from "./TaskEditModal";
 import { useNavigate } from "react-router-dom";
 import "./TaskList.css";
+import Sidebar from "./SideBar";
 
 const notify = (text: string) => toast(text);
 
@@ -55,6 +56,7 @@ const TaskList: React.FC = () => {
 
   return (
     <>
+    <Sidebar/>
       <div style={{ position: "fixed", top: 0, right: 0, zIndex: 9999 }}>
         <ToastContainer />
       </div>

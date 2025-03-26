@@ -59,7 +59,7 @@ const UserEditModal: React.FC<UserEditModalProps> = ({ user, closeModal }) => {
           {loading ? (
             <p>Saving User...</p>
           ) : (
-            <form onSubmit={handleSubmit}>
+            <form className="editform" onSubmit={handleSubmit}>
               <label>Emri</label>
               <input
                 type="text"

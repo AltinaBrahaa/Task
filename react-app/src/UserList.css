@@ -1,4 +1,3 @@
-
 .user-list-container {
     padding: 20px;
     max-width: 800px;
@@ -38,11 +37,11 @@
   }
   
   .user-actions {
-    margin-top: 15px;
+    margin-top: 25px;
   }
   
   .edit-button, .delete-button {
-    padding: 10px 20px;
+    padding: 15px 25px;
     font-size: 16px;
     margin-right: 10px;
     border: none;
@@ -51,20 +50,23 @@
   }
   
   .edit-button {
-    background-color: #a16e95;
-    color: white;
+    margin-bottom: 15px;
+    border: 2px solid #7f8ad9;
+    background-color: #f4f4f9;
+    color: rgb(1, 0, 0);
   }
   
   .delete-button {
-    background-color: #821a13;
-    color: white;
+    border: 2px solid #cd2424;
+    background-color: #f4f4f9;
+    color: rgb(0, 0, 0);
   }
   
   .edit-button:hover {
-    background-color: #814973;
+    background-color: #d26a25;
   }
   
   .delete-button:hover {
-    background-color: #ea9c9b;
+    background-color: #d42522;
   }
   

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
-import { FaHome, FaPlusCircle, FaUserPlus, FaBox } from "react-icons/fa"; 
+import { FaHome, FaPlusCircle, FaUserPlus, FaBox, FaBold, FaImage } from "react-icons/fa"; 
 import "./Sidebar.css"; 
 
 const Sidebar = () => {
@@ -8,16 +8,17 @@ const Sidebar = () => {
     <div className="sidebar">
       <h2>Sidebar Task</h2>
       <ul>
+      <li>
+          <Link to="/home">
+            <FaHome style={{ marginRight: "10px" }} /> Home
+          </Link>
+        </li>
         <li>
           <Link to="/add-task">
             <FaPlusCircle style={{ marginRight: "10px" }} /> Add Task
           </Link>
         </li>
-        <li>
-          <Link to="/home">
-            <FaPlusCircle style={{ marginRight: "10px" }} /> Home
-          </Link>
-        </li>
+       
         <li>
           <Link to="/add-user">
             <FaUserPlus style={{ marginRight: "10px" }} /> Add User
@@ -35,7 +36,7 @@ const Sidebar = () => {
         </li>
         <li>
           <Link to="/upload">
-            <FaBox style={{ marginRight: "10px" }} /> UploadImage
+            <FaImage style={{ marginRight: "10px" }} /> UploadImage
           </Link>
         </li>
    

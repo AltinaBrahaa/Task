@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { jwtDecode } from "jwt-decode";
 import "./Add.css";
+import Sidebar from "./SideBar";
 
 interface CustomJwtPayload {
   exp: number;
@@ -33,7 +34,7 @@ const AddTask = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Get the token from localStorage
+  
     const token = localStorage.getItem("accessToken");
 
     if (!token) {
@@ -43,7 +44,7 @@ const AddTask = () => {
     }
 
     try {
-      // Decode the token to get userId
+  
       const decodedToken = jwtDecode<CustomJwtPayload>(token);
 
       if (!decodedToken) {
@@ -52,7 +53,7 @@ const AddTask = () => {
         return;
       }
 
-      // Get userId from the decoded token
+      
       const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
 
       if (!userId) {
@@ -61,12 +62,12 @@ const AddTask = () => {
         return;
       }
 
-      // Send the task data along with the userId
+     
       const response = await axios.post(
-        `http://localhost:5222/api/Taski`,  // Your API URL here
+        `http://localhost:5222/api/Taski`, 
         {
-          ...taskValue,  // Spread the task values (title, description)
-          userId,        // Add userId to the request payload
+          ...taskValue, 
+          userId,        
         }
       );
 
@@ -87,10 +88,11 @@ const AddTask = () => {
 
   return (
     <>
+      <Sidebar/>
       <div style={{ position: "fixed", top: 0, right: 0, zIndex: 9999 }}>
         <ToastContainer />
       </div>
-      <div className="container">
+      <div className="contaiiner">
         <div className="Main_Add_Task_div">
           <h1>Add Task</h1>
           <form onSubmit={handleTaskSubmit}>

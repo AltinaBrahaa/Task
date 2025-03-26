@@ -1,4 +1,4 @@
-.container {
+.containeer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
   }
   
   .Main_Add_User_div {
-    width: 550px;
+    width: 400px;
     margin: 0 auto;
     padding: 35px;
     background-color: #f1f1f1;
