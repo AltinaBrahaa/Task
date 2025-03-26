@@ -12,5 +12,7 @@ namespace Task.Models
         public byte[] PasswordSalt { get; set; } = null!;
         public string Role { get; set; } = "User";
         public ICollection<Taski> Tasks { get; set; }
+
+        public ICollection<ProductSl> ProductSls { get; set; }
     }
 }

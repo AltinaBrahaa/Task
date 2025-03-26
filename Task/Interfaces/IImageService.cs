@@ -10,7 +10,7 @@ namespace Task.Interfaces
             Task<ImageResponseDto> UploadImageAsync(ImageUploadRequestDto dto);
             Task<ImageResponseDto?> GetImageByIdAsync(int imageId);
             Task<bool> DeleteImageAsync(int imageId);
-        Task<List<ImageResponseDto>> GetAllImagesAsync();
+            Task<List<ImageResponseDto>> GetAllImagesAsync();
     }
 
 

@@ -52,9 +52,9 @@ namespace Task.Controllers
         {
             var success = await _imageService.DeleteImageAsync(id);
             if (!success)
-                return NotFound(); // Return 404 if image is not found or deletion failed
+                return NotFound(); 
 
-            return NoContent(); // Return 204 No Content if deletion is successful
+            return NoContent(); 
         }
 
     }

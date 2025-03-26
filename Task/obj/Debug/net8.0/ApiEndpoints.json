@@ -84,16 +84,89 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Task.Controllers.ProductController",
+    "ContainingType": "Task.Controllers.ProductImageController",
+    "Method": "GetAllProductImages",
+    "RelativePath": "api/product-images",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Controllers.ProductImageController",
+    "Method": "GetProductImage",
+    "RelativePath": "api/product-images/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Controllers.ProductImageController",
+    "Method": "DeleteProductImage",
+    "RelativePath": "api/product-images/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Controllers.ProductImageController",
+    "Method": "UploadProductImage",
+    "RelativePath": "api/product-images/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileDescription",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProductSlId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Controllers.ProductSlController",
     "Method": "GetProducts",
-    "RelativePath": "api/Product",
+    "RelativePath": "api/ProductSl",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Task.Models.Product, Task, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Task.DTO.ProductSlDto, Task, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -104,22 +177,22 @@
     ]
   },
   {
-    "ContainingType": "Task.Controllers.ProductController",
+    "ContainingType": "Task.Controllers.ProductSlController",
     "Method": "PostProduct",
-    "RelativePath": "api/Product",
+    "RelativePath": "api/ProductSl",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "product",
-        "Type": "Task.Models.Product",
+        "Name": "productDto",
+        "Type": "Task.DTO.ProductSlDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "Task.Models.Product",
+        "Type": "Task.DTO.ProductSlDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -130,9 +203,9 @@
     ]
   },
   {
-    "ContainingType": "Task.Controllers.ProductController",
+    "ContainingType": "Task.Controllers.ProductSlController",
     "Method": "GetProduct",
-    "RelativePath": "api/Product/{id}",
+    "RelativePath": "api/ProductSl/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -145,7 +218,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Task.Models.Product",
+        "Type": "Task.DTO.ProductSlDto",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -156,9 +229,9 @@
     ]
   },
   {
-    "ContainingType": "Task.Controllers.ProductController",
+    "ContainingType": "Task.Controllers.ProductSlController",
     "Method": "PutProduct",
-    "RelativePath": "api/Product/{id}",
+    "RelativePath": "api/ProductSl/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -169,17 +242,17 @@
         "IsRequired": true
       },
       {
-        "Name": "product",
-        "Type": "Task.Models.Product",
+        "Name": "productDto",
+        "Type": "Task.DTO.ProductSlDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Task.Controllers.ProductController",
+    "ContainingType": "Task.Controllers.ProductSlController",
     "Method": "DeleteProduct",
-    "RelativePath": "api/Product/{id}",
+    "RelativePath": "api/ProductSl/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

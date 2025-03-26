@@ -17,6 +17,8 @@ namespace Task.Mappings
             CreateMap<Image, ImageUploadRequestDto>().ReverseMap();
             CreateMap<Image, ImageResponseDto>();
 
+            CreateMap<ProductImage, ProductImageUploadRequestDto>().ReverseMap();
+            CreateMap<ProductImage, ProductImageResponseDto>();
         }
     }
 }
