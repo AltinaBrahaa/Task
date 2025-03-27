@@ -39,4 +39,35 @@
   .sidebar ul li a:hover {
     background-color: #555;
   }
+  .dropdown-menu {
+    list-style: none;
+    padding-left: 20px;
+  }
+  
+  .dropdown-menu-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px; /* Hapësira mes kolonave */
+  }
+  
+  .dropdown-menu-columns li {
+    background-color: #333; /* Ngjyra e sfondit */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    flex: 1; /* Siguron që të gjitha kolonat të kenë të njëjtën gjerësi */
+  }
+  
+  .dropdown-menu-columns li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+  }
+  
+  .dropdown-menu-columns li:hover {
+    background-color: #555; /* Ngjyra kur kalon mbi kolonë */
+  }
+  
   

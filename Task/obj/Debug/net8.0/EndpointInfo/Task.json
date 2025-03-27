@@ -138,7 +138,7 @@
         }
       }
     },
-    "/api/product-images/upload": {
+    "/api/product-images": {
       "post": {
         "tags": [
           "ProductImage"
@@ -191,9 +191,7 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/product-images": {
+      },
       "get": {
         "tags": [
           "ProductImage"
@@ -234,6 +232,29 @@
         "parameters": [
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/product-images/by-product/{productId}": {
+      "get": {
+        "tags": [
+          "ProductImage"
+        ],
+        "parameters": [
+          {
+            "name": "productId",
             "in": "path",
             "required": true,
             "schema": {

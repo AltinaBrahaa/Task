@@ -19,7 +19,6 @@ namespace Task.Repositories
             _context = context;
         }
 
-     
         public async Task<ProductImage> AddProductImageAsync(ProductImage productImage)
         {
             _context.ProductImage.Add(productImage);
@@ -27,19 +26,16 @@ namespace Task.Repositories
             return productImage;
         }
 
-        
         public async Task<List<ProductImage>> GetAllProductImagesAsync()
         {
             return await _context.ProductImage.ToListAsync();
         }
 
-       
         public async Task<ProductImage?> GetProductImageByIdAsync(int productImageId)
         {
             return await _context.ProductImage.FindAsync(productImageId);
         }
 
-       
         public async Task<bool> DeleteProductImageAsync(int productImageId)
         {
             var productImage = await _context.ProductImage.FindAsync(productImageId);
@@ -51,6 +47,14 @@ namespace Task.Repositories
             _context.ProductImage.Remove(productImage);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        
+        public async Task<List<ProductImage>> GetImagesByProductIdAsync(int productId)
+        {
+            return await _context.ProductImage
+                                 .Where(pi => pi.ProductSlId == productId)
+                                 .ToListAsync();
         }
     }
 }

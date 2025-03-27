@@ -8,8 +8,10 @@ import Sidebar from "./SideBar";
 import AddUser from "./AddUser";
 import TaskList from "./TaskList";
 import UserList from "./UserList";
-import Home from "./Home";
+import HomePage from "./HomePage";
 import ImageUpload from "./ImageUpload";
+import ProductForm from "./ProductForm";
+import Addproduct from "./Addproduct"; 
 
 function App() {
   return (
@@ -19,16 +21,14 @@ function App() {
           <Routes>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-          </Routes>
-          <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/upload" element={<ImageUpload />} />
+            <Route path="/homepage" element={<HomePage />} />
+            <Route path="/addproduct" element={<Addproduct />} /> 
+            <Route path="/upload" element={<ImageUpload />} />
             <Route path="/add-task" element={<AddTask />} />
             <Route path="/add-user" element={<AddUser />} />
             <Route path="/task-list" element={<TaskList />} />
             <Route path="/user-list" element={<UserList />} />
-          </Routes>
-          <Routes>
+            <Route path="/productForm" element={<ProductForm />} />
             <Route path="/sidebar" element={<Sidebar />} />
           </Routes>
         </div>

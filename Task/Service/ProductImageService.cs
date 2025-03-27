@@ -21,18 +21,18 @@ namespace Task.Services
             _mapper = mapper;
         }
 
-   
+        // Existing methods...
+
+        // Upload Product Image
         public async Task<ProductImageResponseDto> UploadProductImageAsync(ProductImageUploadRequestDto dto)
         {
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "ProductImages");
 
-           
             if (!Directory.Exists(uploadPath))
             {
                 Directory.CreateDirectory(uploadPath);
             }
 
-          
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.File.FileName);
             var fullPath = Path.Combine(uploadPath, fileName);
 
@@ -51,37 +51,35 @@ namespace Task.Services
                 ProductSlId = dto.ProductSlId
             };
 
-        
             var result = await _productImageRepository.AddProductImageAsync(productImage);
-
             return _mapper.Map<ProductImageResponseDto>(result);
         }
 
- 
+        // Get Product Image by ID
         public async Task<ProductImageResponseDto?> GetProductImageByIdAsync(int productImageId)
         {
             var productImage = await _productImageRepository.GetProductImageByIdAsync(productImageId);
             return productImage == null ? null : _mapper.Map<ProductImageResponseDto>(productImage);
         }
 
+        // Get All Product Images
         public async Task<List<ProductImageResponseDto>> GetAllProductImagesAsync()
         {
             var productImages = await _productImageRepository.GetAllProductImagesAsync();
             return _mapper.Map<List<ProductImageResponseDto>>(productImages);
         }
 
-      
+        // Delete Product Image
         public async Task<bool> DeleteProductImageAsync(int productImageId)
         {
             var productImage = await _productImageRepository.GetProductImageByIdAsync(productImageId);
             if (productImage == null)
             {
-                return false; 
+                return false;
             }
 
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", productImage.FilePath.TrimStart('/'));
 
-        
             if (File.Exists(filePath))
             {
                 try
@@ -95,8 +93,14 @@ namespace Task.Services
                 }
             }
 
-     
             return await _productImageRepository.DeleteProductImageAsync(productImageId);
+        }
+
+        // New method to get images by Product ID
+        public async Task<List<ProductImageResponseDto>> GetImagesByProductIdAsync(int productId)
+        {
+            var productImages = await _productImageRepository.GetImagesByProductIdAsync(productId);
+            return _mapper.Map<List<ProductImageResponseDto>>(productImages);
         }
     }
 }

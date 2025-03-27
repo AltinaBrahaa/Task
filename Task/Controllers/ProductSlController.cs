@@ -169,3 +169,4 @@ namespace Task.Controllers
         }
     }
 }
+/*qellimi i projektit eshte qe na kur ta shtojna ni foto me ja shtu edhe shkrimet permbi foto qato qmimet e qato me kon permi foto tash un kur ta boj ni form per me shtu ni product me mujt edhe foton me bo upload edhe shkrimet mbi to tash ti dergoj klasat edhe krijoje logjiken e saj se si duhet ta bej kete*/

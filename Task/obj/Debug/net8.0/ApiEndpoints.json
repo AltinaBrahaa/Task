@@ -85,6 +85,37 @@
   },
   {
     "ContainingType": "Task.Controllers.ProductImageController",
+    "Method": "UploadProductImage",
+    "RelativePath": "api/product-images",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileDescription",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProductSlId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Controllers.ProductImageController",
     "Method": "GetAllProductImages",
     "RelativePath": "api/product-images",
     "HttpMethod": "GET",
@@ -127,31 +158,16 @@
   },
   {
     "ContainingType": "Task.Controllers.ProductImageController",
-    "Method": "UploadProductImage",
-    "RelativePath": "api/product-images/upload",
-    "HttpMethod": "POST",
+    "Method": "GetImagesByProductId",
+    "RelativePath": "api/product-images/by-product/{productId}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "File",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
-      },
-      {
-        "Name": "FileName",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "FileDescription",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "ProductSlId",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

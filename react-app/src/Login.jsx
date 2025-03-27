@@ -57,8 +57,8 @@ function Login() {
       const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
       console.log("User Role:", role);
   
-      console.log("Navigating to:", role === "SuperAdmin" ? "/sidebar" : "/home");
-      navigate(role === "SuperAdmin" ? "/sidebar" : "/home");
+      console.log("Navigating to:", role === "SuperAdmin" ? "/sidebar" : "/homepage");
+      navigate(role === "SuperAdmin" ? "/sidebar" : "/homepage");
   
     } catch (error) {
       setErrorMessage(error.message);
