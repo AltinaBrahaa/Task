@@ -64,23 +64,19 @@ namespace Task.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetProductImage(int id)
+        [HttpGet("product-images/{id}")]
+        public IActionResult GetProductImage(int id)
         {
-            try
-            {
-                var result = await _productImageService.GetProductImageByIdAsync(id);
-                if (result == null)
-                    return NotFound();
+            var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "ProductImages", $"{id}.jpg");
 
-                var productImageDto = _mapper.Map<ProductImageResponseDto>(result);
-                return Ok(productImageDto);
-            }
-            catch (Exception ex)
+            if (System.IO.File.Exists(imagePath))
             {
-                return StatusCode(500, new { message = ex.Message });
+                return File(System.IO.File.ReadAllBytes(imagePath), "image/jpeg");
             }
+            return NotFound();
         }
+
+
 
         [HttpGet("by-product/{productId}")]
         public async Task<IActionResult> GetImagesByProductId(int productId)

@@ -17,5 +17,8 @@
         public decimal? Discount { get; set; }
 
         public string? UserId { get; set; }
+
+       // public List<ProductImageResponseDto> ProductImages { get; set; }
     }
+
 }

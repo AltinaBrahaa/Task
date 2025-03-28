@@ -22,28 +22,33 @@ namespace Task.Controllers
             _context = context;
         }
 
-        
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductSlDto>>> GetProducts()
         {
-            var products = await _context.ProductSls
-                .Select(p => new ProductSlDto
-                {
-                    ProductSlId = p.ProductSlId,
-                    Name = p.Name,
-                    OldPrice = p.OldPrice,
-                    NewPrice = p.NewPrice,
-                    City = p.City,
-                    Size = p.Size,
-                    Discount = p.Discount,
-                    UserId = p.UserId
-                })
-                .ToListAsync();
+                            var products = await _context.ProductSls
+                            .Include(p => p.ProductImages)
+                            .Select(p => new ProductSlDto
+                            {
+                                ProductSlId = p.ProductSlId,
+                                Name = p.Name,
+                                OldPrice = p.OldPrice,
+                                NewPrice = p.NewPrice,
+                                City = p.City,
+                                Size = p.Size,
+                                Discount = p.Discount,
+                                UserId = p.UserId,
+                                /*ProductImages = p.ProductImages.Select(pi => new ProductImageResponseDto
+                                {
+                                    FilePath = pi.FilePath
+                                }).ToList()*/
+                            })
+                            .ToListAsync();
 
             return Ok(products);
         }
 
-        
+
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductSlDto>> GetProduct(int id)
         {
@@ -169,4 +174,3 @@ namespace Task.Controllers
         }
     }
 }
-/*qellimi i projektit eshte qe na kur ta shtojna ni foto me ja shtu edhe shkrimet permbi foto qato qmimet e qato me kon permi foto tash un kur ta boj ni form per me shtu ni product me mujt edhe foton me bo upload edhe shkrimet mbi to tash ti dergoj klasat edhe krijoje logjiken e saj se si duhet ta bej kete*/

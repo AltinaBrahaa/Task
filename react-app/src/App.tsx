@@ -12,6 +12,7 @@ import HomePage from "./HomePage";
 import ImageUpload from "./ImageUpload";
 import ProductForm from "./ProductForm";
 import Addproduct from "./Addproduct"; 
+import Home from "./Home";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <div className="app">
         <div className="main-content">
           <Routes>
+          <Route path="/home" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/homepage" element={<HomePage />} />

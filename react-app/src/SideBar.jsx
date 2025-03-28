@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom"; 
 import { FaHome, FaPlusCircle, FaUserPlus, FaBox, FaImage, FaChevronDown, FaChevronUp } from "react-icons/fa"; 
 import "./Sidebar.css"; 
@@ -6,6 +6,22 @@ import "./Sidebar.css";
 const Sidebar = () => {
   const [heroDropdown, setHeroDropdown] = useState(false);
   const [imageDropdown, setImageDropdown] = useState(false);
+
+  // Përdorimi i useEffect për të mbyllur dropdown kur klikohet jashtë
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.sidebar')) {
+        setHeroDropdown(false);
+        setImageDropdown(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="sidebar">
@@ -16,13 +32,17 @@ const Sidebar = () => {
             <FaHome style={{ marginRight: "10px" }} /> HomePage
           </Link>
         </li>
+        <li>
+          <Link to="/home">
+            <FaHome style={{ marginRight: "10px" }} /> Home
+          </Link>
+        </li>
 
-       
-        <li 
-          className="dropdown" 
+        <li
+          className="dropdown"
           onClick={(e) => {
-            e.stopPropagation(); 
-            setHeroDropdown(!heroDropdown);
+            e.stopPropagation();
+            setHeroDropdown(prev => !prev); 
           }}
         >
           <span>
@@ -49,7 +69,7 @@ const Sidebar = () => {
             <FaPlusCircle style={{ marginRight: "10px" }} /> Add Task
           </Link>
         </li>
-       
+
         <li>
           <Link to="/add-user">
             <FaUserPlus style={{ marginRight: "10px" }} /> Add User
@@ -67,26 +87,26 @@ const Sidebar = () => {
         </li>
         <li>
           <Link to="/productForm">
-            <FaImage style={{ marginRight: "10px" }} /> AddProduct
+            <FaImage style={{ marginRight: "10px" }} /> Add Product
           </Link>
         </li>
         <li>
           <Link to="/upload">
-            <FaImage style={{ marginRight: "10px" }} /> UploadImage
+            <FaImage style={{ marginRight: "10px" }} /> Upload Image
           </Link>
         </li>
         <li>
           <Link to="/addproduct">
-            <FaImage style={{ marginRight: "10px" }} /> ProductAdd
+            <FaImage style={{ marginRight: "10px" }} /> Product Add
           </Link>
         </li>
 
-        {/* IMAGE DROPDOWN */}
-        <li 
-          className="dropdown" 
+       
+        <li
+          className="dropdown"
           onClick={(e) => {
             e.stopPropagation();
-            setImageDropdown(!imageDropdown);
+            setImageDropdown(prev => !prev); 
           }}
         >
           <span>

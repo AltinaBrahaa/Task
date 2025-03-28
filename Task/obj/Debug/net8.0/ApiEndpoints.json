@@ -126,22 +126,6 @@
   },
   {
     "ContainingType": "Task.Controllers.ProductImageController",
-    "Method": "GetProductImage",
-    "RelativePath": "api/product-images/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Task.Controllers.ProductImageController",
     "Method": "DeleteProductImage",
     "RelativePath": "api/product-images/{id}",
     "HttpMethod": "DELETE",
@@ -166,6 +150,22 @@
     "Parameters": [
       {
         "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Task.Controllers.ProductImageController",
+    "Method": "GetProductImage",
+    "RelativePath": "api/product-images/product-images/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
       }
