@@ -7,7 +7,7 @@ const Sidebar = () => {
   const [heroDropdown, setHeroDropdown] = useState(false);
   const [imageDropdown, setImageDropdown] = useState(false);
 
-  // Përdorimi i useEffect për të mbyllur dropdown kur klikohet jashtë
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest('.sidebar')) {
@@ -100,6 +100,16 @@ const Sidebar = () => {
             <FaImage style={{ marginRight: "10px" }} /> Product Add
           </Link>
         </li>
+        <li>
+          <Link to="/firstProduct">
+            <FaImage style={{ marginRight: "10px" }} /> First Product
+          </Link>
+        </li>
+        <li>
+          <Link to="/secondProduct">
+            <FaImage style={{ marginRight: "10px" }} /> Second Product
+          </Link>
+        </li>
 
        
         <li
@@ -120,7 +130,7 @@ const Sidebar = () => {
               <Link to="/addproduct" onClick={() => setImageDropdown(false)}>Slider</Link>
             </li>
             <li>
-              <Link to="/hero/first-section" onClick={() => setImageDropdown(false)}>First Section</Link>
+              <Link to="/firstProduct" onClick={() => setImageDropdown(false)}>First Section</Link>
             </li>
             <li>
               <Link to="/hero/second-section" onClick={() => setImageDropdown(false)}>Second Section</Link>

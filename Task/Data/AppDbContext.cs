@@ -26,6 +26,10 @@ namespace Task.Data
 
         public DbSet<ProductSl> ProductSls { get; set; }
 
+        public DbSet<FirstProduct> FirstProducts { get; set; }
+
+        public DbSet<SecondProduct> SecondProducts { get; set; }
+
         public DbSet<ProductImage> ProductImage { get; set; }
         //public DbSet<User> Users { get; set; }
         public DbSet<IdentityRole> Roles { get; set; }

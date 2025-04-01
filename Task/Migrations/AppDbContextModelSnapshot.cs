@@ -154,6 +154,43 @@ namespace Task.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Task.Models.FirstProduct", b =>
+                {
+                    b.Property<int>("FirstProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("FirstProductId"));
+
+                    b.Property<string>("City")
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal?>("NewPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal?>("OldPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("FirstProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("FirstProducts");
+                });
+
             modelBuilder.Entity("Task.Models.Image", b =>
                 {
                     b.Property<int>("ImageId")
@@ -211,12 +248,22 @@ namespace Task.Migrations
                     b.Property<long>("FileSizeInBytes")
                         .HasColumnType("bigint");
 
+                    b.Property<int?>("FirstProductId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ProductSlId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SecondProductId")
                         .HasColumnType("int");
 
                     b.HasKey("ProductImageId");
 
+                    b.HasIndex("FirstProductId");
+
                     b.HasIndex("ProductSlId");
+
+                    b.HasIndex("SecondProductId");
 
                     b.ToTable("ProductImage");
                 });
@@ -256,6 +303,43 @@ namespace Task.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ProductSls");
+                });
+
+            modelBuilder.Entity("Task.Models.SecondProduct", b =>
+                {
+                    b.Property<int>("SecondProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("SecondProductId"));
+
+                    b.Property<string>("City")
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal?>("NewPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal?>("OldPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("SecondProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SecondProducts");
                 });
 
             modelBuilder.Entity("Task.Models.Taski", b =>
@@ -413,19 +497,49 @@ namespace Task.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Task.Models.FirstProduct", b =>
+                {
+                    b.HasOne("Task.Models.User", "User")
+                        .WithMany("FirstProducts")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Task.Models.ProductImage", b =>
                 {
+                    b.HasOne("Task.Models.FirstProduct", "FirstProduct")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("FirstProductId");
+
                     b.HasOne("Task.Models.ProductSl", "ProductSl")
                         .WithMany("ProductImages")
                         .HasForeignKey("ProductSlId");
 
+                    b.HasOne("Task.Models.SecondProduct", "SecondProduct")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("SecondProductId");
+
+                    b.Navigation("FirstProduct");
+
                     b.Navigation("ProductSl");
+
+                    b.Navigation("SecondProduct");
                 });
 
             modelBuilder.Entity("Task.Models.ProductSl", b =>
                 {
                     b.HasOne("Task.Models.User", "User")
                         .WithMany("ProductSls")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Task.Models.SecondProduct", b =>
+                {
+                    b.HasOne("Task.Models.User", "User")
+                        .WithMany("SecondProducts")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -441,14 +555,28 @@ namespace Task.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Task.Models.FirstProduct", b =>
+                {
+                    b.Navigation("ProductImages");
+                });
+
             modelBuilder.Entity("Task.Models.ProductSl", b =>
+                {
+                    b.Navigation("ProductImages");
+                });
+
+            modelBuilder.Entity("Task.Models.SecondProduct", b =>
                 {
                     b.Navigation("ProductImages");
                 });
 
             modelBuilder.Entity("Task.Models.User", b =>
                 {
+                    b.Navigation("FirstProducts");
+
                     b.Navigation("ProductSls");
+
+                    b.Navigation("SecondProducts");
 
                     b.Navigation("Tasks");
                 });

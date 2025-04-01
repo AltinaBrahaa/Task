@@ -12,5 +12,9 @@ namespace Task.DTO
 
         public string? FileDescription { get; set; }
         public int? ProductSlId { get; set; }
+
+        public int? FirstProductId { get; set; }
+
+        public int? SecondProductId { get; set; }
     }
 }

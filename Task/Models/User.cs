@@ -14,5 +14,9 @@ namespace Task.Models
         public ICollection<Taski> Tasks { get; set; }
 
         public ICollection<ProductSl> ProductSls { get; set; }
+
+        public ICollection<FirstProduct> FirstProducts { get; set; }
+
+        public ICollection<SecondProduct> SecondProducts { get; set; }
     }
 }

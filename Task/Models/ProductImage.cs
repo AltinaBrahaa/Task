@@ -14,5 +14,11 @@ namespace Task.Models
         public string FilePath { get; set; }
         public int? ProductSlId { get; set; }
         public ProductSl? ProductSl { get; set; }
+
+        public int? FirstProductId { get; set; }
+        public FirstProduct? FirstProduct { get; set; }
+
+        public int? SecondProductId { get; set; }
+        public SecondProduct? SecondProduct { get; set; }
     }
 }

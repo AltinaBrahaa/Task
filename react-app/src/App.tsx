@@ -13,6 +13,9 @@ import ImageUpload from "./ImageUpload";
 import ProductForm from "./ProductForm";
 import Addproduct from "./Addproduct"; 
 import Home from "./Home";
+import FirstProduct from "./FirstProduct";
+import SecondProduct from "./SecondProduct";
+
 
 function App() {
   return (
@@ -25,6 +28,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/homepage" element={<HomePage />} />
             <Route path="/addproduct" element={<Addproduct />} /> 
+            <Route path="/firstProduct" element={<FirstProduct />} /> 
+            <Route path="/secondProduct" element={<SecondProduct />} /> 
             <Route path="/upload" element={<ImageUpload />} />
             <Route path="/add-task" element={<AddTask />} />
             <Route path="/add-user" element={<AddUser />} />

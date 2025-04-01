@@ -1,12 +1,10 @@
 ﻿using Task.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task.Models;
 using Task.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Task.Repositories
 {
@@ -49,12 +47,25 @@ namespace Task.Repositories
             return true;
         }
 
-        
-        public async Task<List<ProductImage>> GetImagesByProductIdAsync(int productId)
+        // Combined method to get images by any of the three IDs
+        public async Task<List<ProductImage>> GetImagesByProductIdAsync(int? productId, int? firstProductId, int? secondProductId)
         {
-            return await _context.ProductImage
-                                 .Where(pi => pi.ProductSlId == productId)
-                                 .ToListAsync();
+            var query = _context.ProductImage.AsQueryable();
+
+            if (productId.HasValue)
+            {
+                query = query.Where(pi => pi.ProductSlId == productId.Value);
+            }
+            if (firstProductId.HasValue)
+            {
+                query = query.Where(pi => pi.FirstProductId == firstProductId.Value);
+            }
+            if (secondProductId.HasValue)
+            {
+                query = query.Where(pi => pi.SecondProductId == secondProductId.Value);
+            }
+
+            return await query.ToListAsync();
         }
     }
 }

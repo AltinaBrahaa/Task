@@ -56,10 +56,19 @@ const Addproduct = () => {
 
   const handleImageUpload = async (file: File) => {
     const formData = new FormData();
+    
     formData.append("File", file);
+    
+
     formData.append("FileName", file.name);
+    
+
     formData.append("FileDescription", "Përshkrimi i imazhit"); 
-    formData.append("ProductSlId", "1"); 
+    
+ 
+    formData.append("ProductSlId", "17"); 
+  
+    console.log("Duke dërguar:", formData);
   
     try {
       const response = await axios.post(
@@ -72,6 +81,8 @@ const Addproduct = () => {
           },
         }
       );
+      console.log("Përgjigja nga serveri:", response.data);
+  
       const imageData = response.data;
       if (imageData && imageData.FilePath) {
         setFormData((prevFormData) => ({
