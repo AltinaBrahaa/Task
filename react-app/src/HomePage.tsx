@@ -64,12 +64,12 @@ const HomePage = () => {
               }
     
               try {
-                // Fetch images using the query parameter
+             
                 const imagesResponse = await axios.get(
                   `http://localhost:5222/api/product-images/by-product?productId=${productSl.productSlId}`
                 );
                 console.log("Images for Product:", imagesResponse.data);
-    
+                
                 if (imagesResponse.data) {
                   productSl.productImages = imagesResponse.data;
                 }

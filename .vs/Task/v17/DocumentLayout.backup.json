@@ -47,10 +47,6 @@
       "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\dto\\secondproductdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\blero\\source\\repos\\Task\\Task\\Migrations\\20250401072309_AddedFirstAndSecondProduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Task\\Migrations\\20250401072309_AddedFirstAndSecondProduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -69,6 +65,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|c:\\users\\blero\\source\\repos\\task\\task\\migrations\\20250401072309_addedfirstandsecondproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5CDD1B36-7773-4F3C-A1D7-E9C1E6477EA6}|Task\\Task.csproj|solutionrelative:task\\migrations\\20250401072309_addedfirstandsecondproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,8 +90,7 @@
               "RelativeToolTip": "Task\\Controllers\\SecondProductController.cs",
               "ViewState": "AgIAAIoAAAAAAAAAAAAowJ4AAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T09:40:03.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T09:40:03.67Z"
             },
             {
               "$type": "Document",
@@ -103,8 +102,7 @@
               "RelativeToolTip": "Task\\Interfaces\\IProductImageService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T08:23:48.244Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T08:23:48.244Z"
             },
             {
               "$type": "Document",
@@ -116,8 +114,7 @@
               "RelativeToolTip": "Task\\Repositories\\ProductImageRepository.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAAswEcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T08:42:52.616Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T08:42:52.616Z"
             },
             {
               "$type": "Document",
@@ -129,8 +126,7 @@
               "RelativeToolTip": "Task\\Repositories\\IProductImageRepository.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAuwBgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T08:43:38.912Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T08:43:38.912Z"
             },
             {
               "$type": "Document",
@@ -142,8 +138,7 @@
               "RelativeToolTip": "Task\\Service\\ProductImageService.cs",
               "ViewState": "AgIAAF0AAAAAAAAAAAAAwIUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:50:22.875Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:50:22.875Z"
             },
             {
               "$type": "Document",
@@ -168,8 +163,7 @@
               "RelativeToolTip": "Task\\Controllers\\FirstProductController.cs",
               "ViewState": "AgIAAIsAAAAAAAAAAAAowKAAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:28:21.841Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:28:21.841Z"
             },
             {
               "$type": "Document",
@@ -181,8 +175,7 @@
               "RelativeToolTip": "Task\\DTO\\ProductImageUploadRequestDto.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAwBMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:52:10.984Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:52:10.984Z"
             },
             {
               "$type": "Document",
@@ -194,8 +187,7 @@
               "RelativeToolTip": "Task\\DTO\\ProductImageResponseDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:52:29.436Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:52:29.436Z"
             },
             {
               "$type": "Document",
@@ -207,8 +199,7 @@
               "RelativeToolTip": "Task\\DTO\\FirstProductDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:24:04.884Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:24:04.884Z"
             },
             {
               "$type": "Document",
@@ -220,12 +211,11 @@
               "RelativeToolTip": "Task\\DTO\\SecondProductDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:27:10.988Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:27:10.988Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "20250401072309_AddedFirstAndSecondProduct.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Migrations\\20250401072309_AddedFirstAndSecondProduct.cs",
               "RelativeDocumentMoniker": "Task\\Migrations\\20250401072309_AddedFirstAndSecondProduct.cs",
@@ -233,12 +223,11 @@
               "RelativeToolTip": "Task\\Migrations\\20250401072309_AddedFirstAndSecondProduct.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:23:09.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:23:09.834Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 15,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Models\\User.cs",
               "RelativeDocumentMoniker": "Task\\Models\\User.cs",
@@ -246,12 +235,11 @@
               "RelativeToolTip": "Task\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:19:18.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:19:18.849Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 11,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Task\\Data\\AppDbContext.cs",
@@ -259,12 +247,11 @@
               "RelativeToolTip": "Task\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:17:45.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:17:45.326Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 14,
               "Title": "ProductImage.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Models\\ProductImage.cs",
               "RelativeDocumentMoniker": "Task\\Models\\ProductImage.cs",
@@ -272,12 +259,11 @@
               "RelativeToolTip": "Task\\Models\\ProductImage.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:16:30.791Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:16:30.791Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 13,
               "Title": "SecondProduct.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Models\\SecondProduct.cs",
               "RelativeDocumentMoniker": "Task\\Models\\SecondProduct.cs",
@@ -285,12 +271,11 @@
               "RelativeToolTip": "Task\\Models\\SecondProduct.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:15:43.456Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:15:43.456Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 12,
               "Title": "FirstProduct.cs",
               "DocumentMoniker": "C:\\Users\\blero\\source\\repos\\Task\\Task\\Models\\FirstProduct.cs",
               "RelativeDocumentMoniker": "Task\\Models\\FirstProduct.cs",
@@ -298,8 +283,7 @@
               "RelativeToolTip": "Task\\Models\\FirstProduct.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T07:15:16.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:15:16.406Z"
             }
           ]
         }

@@ -1,79 +1,80 @@
-
+/* Sidebar Styles */
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .sidebar h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-  }
-  
-  .sidebar ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    margin: 15px 0;
-  }
-  
-  .sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    display: block;
-    padding: 8px 10px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sidebar ul li a:hover {
-    background-color: #555;
-  }
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  background-color: #555;
+}
 
 .dropdown-menu {
   display: none;
 }
-
-
+.dropdown-menuu {
+  display: none;
+}
 .dropdown-menu.show {
   display: block;
+  background-color: #333;
+}
+.dropdown-menuu.showw {
+  display: block;
+  background-color: #333;
 }
 
-
 .dropdown-menu-columns {
-  display: flex;
+  background-color: #333;
   justify-content: space-between;
   gap: 15px;
 }
 
-  .dropdown-menu-columns li {
-    background-color: #333; 
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    flex: 1;
-  }
-  
-  .dropdown-menu-columns li a {
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-    display: block;
-    width: 100%;
-  }
-  
-  .dropdown-menu-columns li:hover {
-    background-color: #555; 
-  }
-  
-  
+.dropdown-menu-columns li {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  flex: 1;
+}
+
+.dropdown-menu-columns li a {
+  text-decoration: none;
+
+  font-size: 14px;
+  display: block;
+  width: 100%;
+}
+
+
