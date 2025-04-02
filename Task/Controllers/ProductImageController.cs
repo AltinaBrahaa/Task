@@ -23,25 +23,25 @@ namespace Task.Controllers
             _mapper = mapper;
         }
 
-        // POST method to upload an image
+       
         [HttpPost]
         public async Task<IActionResult> UploadProductImage([FromForm] ProductImageUploadRequestDto dto)
         {
             try
             {
-                // Check if the file is null
+               
                 if (dto.File == null)
                 {
                     return BadRequest("File është e detyrueshme.");
                 }
 
-                // Validate if the file name is provided
+              
                 if (string.IsNullOrEmpty(dto.FileName))
                 {
                     return BadRequest("FileName është e detyrueshme.");
                 }
 
-                // Validate that at least one product ID is provided
+                
                 if ((dto.FirstProductId == null || dto.FirstProductId == 0) &&
                     (dto.SecondProductId == null || dto.SecondProductId == 0) &&
                     (dto.ProductSlId == null || dto.ProductSlId == 0))
@@ -49,15 +49,15 @@ namespace Task.Controllers
                     return BadRequest("Duhet të jetë i pranishëm ose FirstProductId ose ProductSlId ose SecondProductId.");
                 }
 
-                // Log the incoming request
+                
                 Console.WriteLine($"FileName: {dto.FileName}, ProductSlId: {dto.ProductSlId}, FirstProductId: {dto.FirstProductId}, SecondProductId: {dto.SecondProductId}");
 
-                // Call the service to upload the product image
+                
                 var result = await _productImageService.UploadProductImageAsync(dto);
 
-                // Map the result to a response DTO
+                
                 var responseDto = _mapper.Map<ProductImageResponseDto>(result);
-                return Ok(responseDto); // Return the response including the FilePath
+                return Ok(responseDto); 
             }
             catch (Exception ex)
             {
@@ -65,7 +65,7 @@ namespace Task.Controllers
             }
         }
 
-        // GET method to fetch all images
+        
         [HttpGet]
         public async Task<IActionResult> GetAllProductImages()
         {
@@ -81,18 +81,18 @@ namespace Task.Controllers
             }
         }
 
-        // GET method to fetch a single image by its ID
+       
         [HttpGet("product-images/{id}")]
         public async Task<IActionResult> GetProductImage(int id)
         {
             try
             {
-                // Try to get the image by its ID
+            
                 var image = await _productImageService.GetProductImageByIdAsync(id);
 
                 if (image == null)
                 {
-                    // If not found, check by product ID (FirstProductId, SecondProductId, or ProductSlId)
+                    
                     var imagesByProductId = await _productImageService.GetImagesByProductIdAsync(id, null, null);
 
                     if (imagesByProductId == null || imagesByProductId.Count == 0)
@@ -100,10 +100,10 @@ namespace Task.Controllers
                         return NotFound(new { message = "No image found for this product." });
                     }
 
-                    return Ok(imagesByProductId); // Return images by product ID
+                    return Ok(imagesByProductId); 
                 }
 
-                // If the image is found, return it directly
+               
                 var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "ProductImages", image.FileName);
                 if (System.IO.File.Exists(imagePath))
                 {
@@ -118,12 +118,11 @@ namespace Task.Controllers
             }
         }
 
-        // GET method to fetch images by ProductId, FirstProductId, or SecondProductId
         [HttpGet("by-product")]
         public async Task<IActionResult> GetImagesByProductIdOrFirstProductId(
-    [FromQuery] int? productId,
-    [FromQuery] int? firstProductId,
-    [FromQuery] int? secondProductId)
+            [FromQuery] int? productId,
+            [FromQuery] int? firstProductId,
+            [FromQuery] int? secondProductId)
         {
             try
             {
@@ -141,7 +140,7 @@ namespace Task.Controllers
         }
 
 
-        // DELETE method to remove an image by its ID
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProductImage(int id)
         {
@@ -158,5 +157,105 @@ namespace Task.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
+        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProductImage(int id, [FromForm] ProductImageUploadRequestDto dto)
+        {
+            try
+            {
+               
+                Console.WriteLine($"Received request to update image for product with ID: {id}");
+                Console.WriteLine($"File: {dto.File?.FileName}, ProductSlId: {dto.ProductSlId}");
+
+                if (dto.File == null)
+                {
+                    Console.WriteLine("No file provided");
+                    return BadRequest("File është e detyrueshme.");
+                }
+
+                if (string.IsNullOrEmpty(dto.FileName))
+                {
+                    Console.WriteLine("File name is missing");
+                    return BadRequest("FileName është e detyrueshme.");
+                }
+
+                if (dto.ProductSlId == null || dto.ProductSlId == 0)
+                {
+                    Console.WriteLine("ProductSlId is missing or invalid");
+                    return BadRequest("ProductSlId është i detyrueshëm për përditësimin e imazhit.");
+                }
+
+                
+                Console.WriteLine($"Updating image for ProductSlId: {dto.ProductSlId}, FileName: {dto.FileName}");
+
+                var result = await _productImageService.UpdateProductImageAsync(id, dto);
+
+                if (result == null)
+                {
+                    Console.WriteLine("Failed to update image in the service layer.");
+                    return StatusCode(500, "Failed to update image.");
+                }
+
+                var responseDto = _mapper.Map<ProductImageResponseDto>(result);
+                return Ok(responseDto);
+            }
+            catch (Exception ex)
+            {
+          
+                Console.WriteLine($"Exception occurred: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+        /*
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProductImage(int id, [FromForm] ProductImageUploadRequestDto dto, [FromQuery] int productIdToUpdate)
+        {
+            try
+            {
+                Console.WriteLine($"Received request to update image for product with ID: {id}");
+                Console.WriteLine($"File: {dto.File?.FileName}, ProductSlId: {dto.ProductSlId}, ProductIdToUpdate: {productIdToUpdate}");
+
+                if (dto.File == null)
+                {
+                    Console.WriteLine("No file provided");
+                    return BadRequest("File është e detyrueshme.");
+                }
+
+                if (string.IsNullOrEmpty(dto.FileName))
+                {
+                    Console.WriteLine("File name is missing");
+                    return BadRequest("FileName është e detyrueshme.");
+                }
+
+                if (dto.ProductSlId == null || dto.ProductSlId == 0)
+                {
+                    Console.WriteLine("ProductSlId is missing or invalid");
+                    return BadRequest("ProductSlId është i detyrueshëm për përditësimin e imazhit.");
+                }
+
+                Console.WriteLine($"Updating image for ProductSlId: {dto.ProductSlId}, FileName: {dto.FileName}, ProductIdToUpdate: {productIdToUpdate}");
+
+                var result = await _productImageService.UpdateProductImageAsync(id, dto, productIdToUpdate);
+
+                if (result == null)
+                {
+                    Console.WriteLine("Failed to update image in the service layer.");
+                    return StatusCode(500, "Failed to update image.");
+                }
+
+                var responseDto = _mapper.Map<ProductImageResponseDto>(result);
+                return Ok(responseDto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception occurred: {ex.Message}");
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }*/
+
+
+
+
     }
 }

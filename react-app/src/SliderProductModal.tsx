@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -27,14 +26,10 @@ interface EditProductModalProps {
 
 const notify = (text: string) => toast(text);
 
-const SliderProductModal: React.FC<EditProductModalProps> = ({
-  product,
-  closeModal,
-  updateProduct,
-}) => {
+const SliderProductModal: React.FC<EditProductModalProps> = ({ product, closeModal, updateProduct }) => {
   const [editedProduct, setEditedProduct] = useState<Product>(product);
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   useEffect(() => {
     setEditedProduct(product);
@@ -44,55 +39,57 @@ const SliderProductModal: React.FC<EditProductModalProps> = ({
     e.preventDefault();
     setLoading(true);
 
+    // First, update the product information
     try {
-      let updatedProduct = { ...editedProduct };
+      const response = await axios.put(`http://localhost:5222/api/ProductSl/${product.productSlId}`, editedProduct);
+      updateProduct(response.data);
+      notify("Product updated successfully");
 
-      // If a new image is selected, upload the image first
+      // Now, if an image is uploaded, update the image as well
       if (imageFile) {
-        // Create FormData for image upload
         const formData = new FormData();
-        formData.append("image", imageFile);
+        formData.append("File", imageFile);
+        formData.append("FileName", imageFile.name);
+        formData.append("ProductSlId", editedProduct.productSlId.toString());
 
-        // Upload the image
-        const imageUploadResponse = await axios.post(
-          "http://localhost:5222/api/upload-image", // Replace with your image upload API endpoint
-          formData
+        const imageResponse = await axios.put(
+          `http://localhost:5222/api/product-images/${product.productSlId}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          }
         );
-        
-        // Assuming the backend returns the image URL after upload
-        const uploadedImageUrl = imageUploadResponse.data.filePath;
 
-        // Set the new image URL to the product object
-        updatedProduct = { ...updatedProduct, imageUrl: uploadedImageUrl };
+        // Update the product's image URL with the new one
+        if (imageResponse.data?.filePath) {
+          setEditedProduct((prevProduct) => ({
+            ...prevProduct,
+            imageUrl: imageResponse.data.filePath,
+          }));
+        }
       }
 
-      // Update product details
-      const response = await axios.put(
-        `http://localhost:5222/api/ProductSl/${product.productSlId}`,
-        updatedProduct
-      );
-
-      updateProduct(response.data); // Update the product in the parent component
-      notify("Product updated successfully");
       closeModal();
     } catch (error) {
-      console.error("Error updating product:", error);
-      notify("Failed to update product");
+      console.error("Error updating product or image:", error);
+      notify("Failed to update product or image");
     } finally {
       setLoading(false);
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setEditedProduct({ ...editedProduct, [name]: value });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
-    setImageFile(file);
+    if (file) {
+      setImageFile(file);
+    }
   };
 
   return (
@@ -102,9 +99,7 @@ const SliderProductModal: React.FC<EditProductModalProps> = ({
       </div>
       <div className="modal show">
         <div className="modal-content">
-          <span className="close" onClick={closeModal}>
-            &times;
-          </span>
+          <span className="close" onClick={closeModal}>&times;</span>
           <h2>Edit Product</h2>
           {loading ? (
             <p>Saving product...</p>
@@ -138,7 +133,6 @@ const SliderProductModal: React.FC<EditProductModalProps> = ({
               <input
                 type="file"
                 onChange={handleImageChange}
-                accept="image/*"
               />
               <input type="submit" value="Update Product" />
             </form>
@@ -154,11 +148,16 @@ export default SliderProductModal;
 
 
 
-/*import React, { useState, useEffect } from "react";
+
+
+/*
+
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./EditProductModal.css";
+import { FaKaaba } from "react-icons/fa";
 
 interface ProductImage {
   filePath: string;
@@ -251,7 +250,7 @@ const SliderProductModal: React.FC<EditProductModalProps> = ({ product, closeMod
               <label>Image</label>
               <input
                 type="file"
-                onChange={(e) => {/* handle image change }
+                onChange={(e) => {/* handle image change}
               />
               <input type="submit" value="Update Product" />
             </form>

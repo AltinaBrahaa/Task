@@ -87,38 +87,16 @@ const EditSliderProduct = () => {
 
   const handleDelete = async (productSlId: number) => {
     try {
-      const productToDelete = products.find((product) => product.productSlId === productSlId);
-  
-      if (productToDelete && productToDelete.productImages && productToDelete.productImages.length > 0) {
-        const imagePath = productToDelete.productImages[0].filePath;
-  
- 
-        console.log("Image path:", imagePath);
-  
-     
-        const formattedImagePath = imagePath.startsWith("/") ? imagePath.substring(1) : imagePath;
-        console.log("Formatted Image Path:", formattedImagePath); 
-  
-   
-        const deleteImageUrl = `http://localhost:5222/api/product-images/${formattedImagePath}`;
-        console.log("Deleting image at:", deleteImageUrl);  
-  
-        await axios.delete(deleteImageUrl);
-        console.log(`Image for product ${productSlId} deleted successfully.`);
-      }
-  
-   
+      // Delete the product and its images in a single call to the backend
       await axios.delete(`http://localhost:5222/api/ProductSl/${productSlId}`);
-      console.log(`Product with ID ${productSlId} deleted successfully.`);
-  
-
+      console.log(`Product with ID ${productSlId} and associated images deleted successfully.`);
+      
+      // Update the state to remove the deleted product
       setProducts((prevProducts) => prevProducts.filter((product) => product.productSlId !== productSlId));
     } catch (error) {
       console.error("Error deleting product or image:", error);
     }
   };
-  
-  
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -141,13 +119,13 @@ const EditSliderProduct = () => {
           <div className="row">
             {products.map((product) => (
               <div className="col-md-4" key={product.productSlId}>
-                <div className="product-image-container">
+                <div className="product-imagee-container">
                   <img
                     src={`http://localhost:5222${product.imageUrl}`}
                     alt={product.name}
-                    className="product-image"
+                    className="product-imagee"
                   />
-                  <div className="product-details">
+                  <div className="product-detailss">
                     <h4>{product.name}</h4>
                     <p className="price">${product.newPrice}</p>
                     <p className="size">Size: {product.size}</p>
@@ -173,6 +151,7 @@ const EditSliderProduct = () => {
 };
 
 export default EditSliderProduct;
+
 
 
 

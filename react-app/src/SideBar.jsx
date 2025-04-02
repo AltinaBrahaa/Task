@@ -49,16 +49,16 @@ const Sidebar = () => {
             <div className="dropdown-menu-columns">
               <li>
                 <Link to="/editSliderProduct" onClick={() => setHeroDropdown(false)}>
-                  Edit Product
+                  Slider Product
                 </Link>
               </li>
               <li>
-                <Link to="/firstProduct" onClick={() => setHeroDropdown(false)}>
+                <Link to="/editFirstProduct" onClick={() => setHeroDropdown(false)}>
                   First Product
                 </Link>
               </li>
               <li>
-                <Link to="/secondProduct" onClick={() => setHeroDropdown(false)}>
+                <Link to="/editSecondProduct" onClick={() => setHeroDropdown(false)}>
                   Second Product
                 </Link>
               </li>

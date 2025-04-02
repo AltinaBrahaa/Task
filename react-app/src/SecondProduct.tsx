@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import Sidebar from "./SideBar";
 
 interface CustomJwtPayload {
@@ -20,10 +20,9 @@ const SecondProduct = () => {
     discount: "",
     foto: null,
   });
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false); 
-  const token = localStorage.getItem("jwtToken"); 
+  const [loading, setLoading] = useState(false);
+  const [secondproductId, setSecondProductId] = useState<number | null>(null);
+  const token = localStorage.getItem("jwtToken");
 
   useEffect(() => {
     if (token) {
@@ -39,7 +38,6 @@ const SecondProduct = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       const productData = profileResponse.data;
-
       setFormData((prevFormData) => ({
         ...prevFormData,
         name: productData.name || "",
@@ -55,21 +53,17 @@ const SecondProduct = () => {
   };
 
   const handleImageUpload = async (file: File) => {
+    if (!secondproductId) {
+      alert("Product ID not available for image upload.");
+      return;
+    }
+
     const formData = new FormData();
-    
     formData.append("File", file);
-    
-
     formData.append("FileName", file.name);
-    
+    formData.append("FileDescription", "Përshkrimi i imazhit");
+    formData.append("SecondProductId", secondproductId.toString());
 
-    formData.append("FileDescription", "Përshkrimi i imazhit"); 
-    
- 
-    formData.append("SecondProductId", "1"); 
-  
-    console.log("Duke dërguar:", formData);
-  
     try {
       const response = await axios.post(
         "http://localhost:5222/api/product-images",
@@ -81,13 +75,12 @@ const SecondProduct = () => {
           },
         }
       );
-      console.log("Përgjigja nga serveri:", response.data);
-  
+
       const imageData = response.data;
       if (imageData && imageData.FilePath) {
         setFormData((prevFormData) => ({
           ...prevFormData,
-          foto: imageData.FilePath, 
+          foto: imageData.FilePath,
         }));
       }
     } catch (error) {
@@ -118,30 +111,11 @@ const SecondProduct = () => {
     }
   };
 
-  const handleRemovePhoto = async () => {
-    try {
-      const response = await axios.delete("http://localhost:5222/api/product-images", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        foto: null,
-      }));
-      alert("Photo removed successfully!");
-    } catch (error) {
-      console.error("Error removing photo:", error);
-      alert("Error removing photo. Please try again.");
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true); 
+    setLoading(true);
 
-    const token = localStorage.getItem("accessToken"); 
+    const token = localStorage.getItem("accessToken");
 
     if (!token) {
       setLoading(false);
@@ -150,7 +124,7 @@ const SecondProduct = () => {
     }
 
     try {
-      const decodedToken = jwtDecode<CustomJwtPayload>(token); 
+      const decodedToken = jwtDecode<CustomJwtPayload>(token);
 
       if (!decodedToken) {
         setLoading(false);
@@ -161,7 +135,7 @@ const SecondProduct = () => {
       const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
       if (!userId) {
         setLoading(false);
-        alert("User  ID is missing in the token. Please log in again.");
+        alert("User ID is missing in the token. Please log in again.");
         return;
       }
 
@@ -187,21 +161,13 @@ const SecondProduct = () => {
         }
       );
 
-      setSuccessMessage("Product added successfully!");
+      setSecondProductId(response.data.SecondProductId);
       alert("Product added successfully!");
-
     } catch (error: any) {
-      setLoading(false); 
-  
-      if (error.response && error.response.data) {
-        setErrorMessage(`Error: ${error.response.data.message || error.response.data}`);
-        console.error("Gabim gjatë krijimit të produktit:", error.response?.data);
-      } else {
-        setErrorMessage(`Error: ${error.message || "Something went wrong!"}`);
-      }
+      setLoading(false);
       alert(`Error: ${error.message || "Something went wrong!"}`);
     }
-  }
+  };
 
   return (
     <>
@@ -211,7 +177,49 @@ const SecondProduct = () => {
           <div className="col-md-8">
             <div className="card shadow">
               <div className="card-body">
-                <h4 className="fst-italic mb-4 text-center">Add Product</h4>
+                <h4 className="fst-italic mb-4 text-center">Add Second Product</h4>
+
+                <form onSubmit={handleSubmit}>
+                  <div className="row">
+                    {[
+                      { label: "Name", name: "name", type: "text", value: formData.name },
+                      { label: "Old Price", name: "oldPrice", type: "number", value: formData.oldPrice },
+                      { label: "New Price", name: "newPrice", type: "number", value: formData.newPrice },
+                      { label: "City", name: "city", type: "text", value: formData.city },
+                      { label: "Size", name: "size", type: "text", value: formData.size },
+                      { label: "Discount", name: "discount", type: "number", value: formData.discount },
+                    ].map(({ label, name, type, value }) => (
+                      <div className="col-md-6 mb-3" key={name}>
+                        <div className="form-group">
+                          <label htmlFor={name} className="text-muted">{label}</label>
+                          <input
+                            type={type}
+                            className="form-control"
+                            id={name}
+                            name={name}
+                            value={value || ""}
+                            onChange={handleChange}
+                            placeholder={`Enter ${label.toLowerCase()}`}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                    <div className="col-md-12 mb-3 text-center">
+                      <button type="submit" className="btn btn-primary">
+                        {loading ? "Saving..." : "Save Product"}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+
+                <input
+                  type="file"
+                  className="form-control mb-3"
+                  id="foto"
+                  name="foto"
+                  onChange={handleChange}
+                />
+
                 {formData.foto && (
                   <div className="mb-3 text-center">
                     <img
@@ -222,118 +230,6 @@ const SecondProduct = () => {
                     />
                   </div>
                 )}
-                <div className="text-center mb-3">
-                  <button
-                    type="button"
-                    className="btn btn-danger mb-3"
-                    onClick={handleRemovePhoto}
-                  >
-                    Remove Photo
-                  </button>
-                </div>
-                <input
-                  type="file"
-                  className="form-control mb-3"
-                  id="foto"
-                  name="foto"
-                  onChange={handleChange}
-                />
-                <form onSubmit={handleSubmit}>
-                  <div className="row">
-                    <div className="col-md-6 mb-3">
-                      <div className="form-group">
-                        <label htmlFor="name" className="text-muted">Name</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="name"
-                          name="name"
-                          value={formData.name || ""}
-                          onChange={handleChange}
-                          placeholder="Enter product name"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6 mb-3">
-                      <div className="form-group">
-                        <label htmlFor="oldPrice" className="text-muted">Old Price</label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="oldPrice"
-                          name="oldPrice"
-                          value={formData.oldPrice || ""}
-                          onChange={handleChange}
-                          placeholder="Enter old price"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6 mb-3">
-                      <div className="form-group">
-                        <label htmlFor="newPrice" className="text-muted">New Price</label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="newPrice"
-                          name="newPrice"
-                          value={formData.newPrice || ""}
-                          onChange={handleChange}
-                          placeholder="Enter new price"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6 mb-3">
-                      <div className="form-group">
-                        <label htmlFor="city" className="text-muted">City</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="city"
-                          name="city"
-                          value={formData.city || ""}
-                          onChange={handleChange}
-                          placeholder="Enter city"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6 mb-3">
-                      <div className="form-group">
-                        <label htmlFor="size" className="text-muted">Size</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="size"
-                          name="size"
-                          value={formData.size || ""}
-                          onChange={handleChange}
-                          placeholder="Enter size"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6 mb-3">
-                      <div className="form-group">
-                        <label htmlFor="discount" className="text-muted">Discount</label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="discount"
-                          name="discount"
-                          value={formData.discount || ""}
-                          onChange={handleChange}
-                          placeholder="Enter discount"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-12 mb-3 text-center">
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                      >
-                        {loading ? "Saving..." : "Save Changes"}
-                      </button>
-                    </div>
-                  </div>
-                </form>
               </div>
             </div>
           </div>

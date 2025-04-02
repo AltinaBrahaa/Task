@@ -24,7 +24,7 @@
 }
 
 
-.product-image-container {
+.product-imagee-container {
   position: relative;
   width: 100%;
   max-width: 300px; 
@@ -39,21 +39,20 @@
 }
 
 
-.product-image-container:hover {
+.product-imagee-container:hover {
   transform: scale(1.05);
 }
 
 
-.product-image {
+.product-imagee {
   width: 100%; 
   height: auto; 
   border-radius: 8px 8px 0 0;
 }
 
 
-.product-details {
+.product-detailss {
   position: relative; 
-  margin-left: 215px;
   background-color: rgba(255, 255, 255, 0.9); 
   color: rgb(7, 0, 0);
   padding: 10px;
@@ -63,8 +62,8 @@
 }
 
 
-.product-details h4,
-.product-details p {
+.product-detailss h4,
+.product-detailss p {
   color: black;
   font-size: 19px;
   margin: 2px 0;

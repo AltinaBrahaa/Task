@@ -47,7 +47,7 @@ namespace Task.Repositories
             return true;
         }
 
-        // Combined method to get images by any of the three IDs
+     
         public async Task<List<ProductImage>> GetImagesByProductIdAsync(int? productId, int? firstProductId, int? secondProductId)
         {
             var query = _context.ProductImage.AsQueryable();
@@ -67,5 +67,16 @@ namespace Task.Repositories
 
             return await query.ToListAsync();
         }
+
+        public async Task<ProductImage> UpdateProductImageAsync(ProductImage productImage)
+        {
+         
+            _context.ProductImage.Update(productImage);
+
+            await _context.SaveChangesAsync();
+
+            return productImage;
+        }
+
     }
 }

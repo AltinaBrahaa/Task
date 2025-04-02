@@ -157,20 +157,50 @@ namespace Task.Controllers
             }
         }
 
-       
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var product = await _context.ProductSls.FindAsync(id);
-            if (product == null)
+            try
             {
-                return NotFound();
+           
+                var product = await _context.ProductSls
+                    .Include(p => p.ProductImages)
+                    .FirstOrDefaultAsync(p => p.ProductSlId == id);
+
+                if (product == null)
+                {
+                    return NotFound(new { message = "Product not found" });
+                }
+
+                
+                if (product.ProductImages != null && product.ProductImages.Count > 0)
+                {
+                    foreach (var image in product.ProductImages)
+                    {
+                        
+                        var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "ProductImages", image.FilePath);
+
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                           
+                            System.IO.File.Delete(imagePath);
+                            Console.WriteLine($"Deleted image: {imagePath}");
+                        }
+                    }
+                }
+
+           
+                _context.ProductSls.Remove(product);
+                await _context.SaveChangesAsync();
+
+                return NoContent(); 
             }
-
-            _context.ProductSls.Remove(product);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $"An error occurred while deleting the product: {ex.Message}" });
+            }
         }
+
     }
 }

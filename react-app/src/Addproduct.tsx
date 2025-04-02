@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 import Sidebar from "./SideBar";
 
 interface CustomJwtPayload {
@@ -22,8 +22,9 @@ const Addproduct = () => {
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false); 
-  const token = localStorage.getItem("jwtToken"); 
+  const [loading, setLoading] = useState(false);
+  const [productId, setProductId] = useState<number | null>(null); 
+  const token = localStorage.getItem("jwtToken");
 
   useEffect(() => {
     if (token) {
@@ -55,21 +56,19 @@ const Addproduct = () => {
   };
 
   const handleImageUpload = async (file: File) => {
+    if (!productId) {
+      alert("Product ID not available for image upload.");
+      return;
+    }
+
     const formData = new FormData();
-    
     formData.append("File", file);
-    
-
     formData.append("FileName", file.name);
-    
+    formData.append("FileDescription", "Përshkrimi i imazhit");
+    formData.append("ProductSlId", productId.toString()); 
 
-    formData.append("FileDescription", "Përshkrimi i imazhit"); 
-    
- 
-    formData.append("ProductSlId", "17"); 
-  
     console.log("Duke dërguar:", formData);
-  
+
     try {
       const response = await axios.post(
         "http://localhost:5222/api/product-images",
@@ -82,7 +81,7 @@ const Addproduct = () => {
         }
       );
       console.log("Përgjigja nga serveri:", response.data);
-  
+
       const imageData = response.data;
       if (imageData && imageData.FilePath) {
         setFormData((prevFormData) => ({
@@ -139,9 +138,9 @@ const Addproduct = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true); 
+    setLoading(true);
 
-    const token = localStorage.getItem("accessToken"); 
+    const token = localStorage.getItem("accessToken");
 
     if (!token) {
       setLoading(false);
@@ -150,7 +149,7 @@ const Addproduct = () => {
     }
 
     try {
-      const decodedToken = jwtDecode<CustomJwtPayload>(token); 
+      const decodedToken = jwtDecode<CustomJwtPayload>(token);
 
       if (!decodedToken) {
         setLoading(false);
@@ -161,7 +160,7 @@ const Addproduct = () => {
       const userId = decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
       if (!userId) {
         setLoading(false);
-        alert("User  ID is missing in the token. Please log in again.");
+        alert("User ID is missing in the token. Please log in again.");
         return;
       }
 
@@ -187,12 +186,13 @@ const Addproduct = () => {
         }
       );
 
+      setProductId(response.data.productSlId); 
       setSuccessMessage("Product added successfully!");
       alert("Product added successfully!");
 
     } catch (error: any) {
-      setLoading(false); 
-  
+      setLoading(false);
+
       if (error.response && error.response.data) {
         setErrorMessage(`Error: ${error.response.data.message || error.response.data}`);
         console.error("Gabim gjatë krijimit të produktit:", error.response?.data);
@@ -201,7 +201,7 @@ const Addproduct = () => {
       }
       alert(`Error: ${error.message || "Something went wrong!"}`);
     }
-  }
+  };
 
   return (
     <>
@@ -212,32 +212,8 @@ const Addproduct = () => {
             <div className="card shadow">
               <div className="card-body">
                 <h4 className="fst-italic mb-4 text-center">Add Product</h4>
-                {formData.foto && (
-                  <div className="mb-3 text-center">
-                    <img
-                      src={formData.foto}
-                      alt="Selected"
-                      className="img-thumbnail"
-                      style={{ width: "200px", height: "200px" }}
-                    />
-                  </div>
-                )}
-                <div className="text-center mb-3">
-                  <button
-                    type="button"
-                    className="btn btn-danger mb-3"
-                    onClick={handleRemovePhoto}
-                  >
-                    Remove Photo
-                  </button>
-                </div>
-                <input
-                  type="file"
-                  className="form-control mb-3"
-                  id="foto"
-                  name="foto"
-                  onChange={handleChange}
-                />
+               
+                
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col-md-6 mb-3">
@@ -332,8 +308,26 @@ const Addproduct = () => {
                         {loading ? "Saving..." : "Save Changes"}
                       </button>
                     </div>
-                  </div>
-                </form>
+                </div>
+              </form>
+                    <input
+                      type="file"
+                      className="form-control mb-3"
+                      id="foto"
+                      name="foto"
+                      onChange={handleChange}
+                    />
+                  
+                    {formData.foto && (
+                    <div className="mb-3 text-center">
+                    <img
+                      src={formData.foto}
+                      alt="Selected"
+                      className="img-thumbnail"
+                      style={{ width: "200px", height: "200px" }}
+                    />
+                    </div>
+                     )}
               </div>
             </div>
           </div>
@@ -344,6 +338,7 @@ const Addproduct = () => {
 };
 
 export default Addproduct;
+
 
 
 

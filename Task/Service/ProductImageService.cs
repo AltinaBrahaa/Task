@@ -21,10 +21,10 @@ namespace Task.Services
             _mapper = mapper;
         }
 
-        // Upload Product Image
+
         public async Task<ProductImageResponseDto> UploadProductImageAsync(ProductImageUploadRequestDto dto)
         {
-            // Validate that at least one of the product IDs is provided
+            
             if (dto.FirstProductId == null && dto.SecondProductId == null && dto.ProductSlId == null)
             {
                 throw new ArgumentNullException("At least one of FirstProductId, SecondProductId, or ProductSlId must be provided.");
@@ -32,23 +32,23 @@ namespace Task.Services
 
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "ProductImages");
 
-            // Ensure that the upload directory exists
+           
             if (!Directory.Exists(uploadPath))
             {
                 Directory.CreateDirectory(uploadPath);
             }
 
-            // Generate a unique file name for the uploaded image
+          
             var fileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.File.FileName);
             var fullPath = Path.Combine(uploadPath, fileName);
 
-            // Save the uploaded file to the server
+          
             using (var stream = new FileStream(fullPath, FileMode.Create))
             {
                 await dto.File.CopyToAsync(stream);
             }
 
-            // Create the ProductImage entity
+       
             var productImage = new ProductImage
             {
                 FileName = fileName,
@@ -61,14 +61,14 @@ namespace Task.Services
                 SecondProductId = dto.SecondProductId
             };
 
-            // Save the product image to the repository
+  
             var result = await _productImageRepository.AddProductImageAsync(productImage);
 
-            // Return the mapped ProductImageResponseDto
+          
             return _mapper.Map<ProductImageResponseDto>(result);
         }
 
-        // Get Product Image by ID
+     
         public async Task<ProductImageResponseDto?> GetProductImageByIdAsync(int productImageId)
         {
             var productImage = await _productImageRepository.GetProductImageByIdAsync(productImageId);
@@ -78,18 +78,18 @@ namespace Task.Services
                 return null;
             }
 
-            // Return the mapped ProductImageResponseDto
+        
             return _mapper.Map<ProductImageResponseDto>(productImage);
         }
 
-        // Get All Product Images
+
         public async Task<List<ProductImageResponseDto>> GetAllProductImagesAsync()
         {
             var productImages = await _productImageRepository.GetAllProductImagesAsync();
             return _mapper.Map<List<ProductImageResponseDto>>(productImages);
         }
 
-        // Delete Product Image
+       
         public async Task<bool> DeleteProductImageAsync(int productImageId)
         {
             var productImage = await _productImageRepository.GetProductImageByIdAsync(productImageId);
@@ -98,10 +98,9 @@ namespace Task.Services
                 return false;
             }
 
-            // Determine the path to the image file
+            
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", productImage.FilePath.TrimStart('/'));
 
-            // Delete the file if it exists
             if (File.Exists(filePath))
             {
                 try
@@ -115,19 +114,87 @@ namespace Task.Services
                 }
             }
 
-            // Delete the product image record from the repository
+      
             return await _productImageRepository.DeleteProductImageAsync(productImageId);
         }
 
-        // Get Images by ProductId, FirstProductId, or SecondProductId
+       
         public async Task<List<ProductImageResponseDto>> GetImagesByProductIdAsync(int? productId, int? firstProductId, int? secondProductId)
         {
-            // Get images using the combined method in the repository
+          
             var productImages = await _productImageRepository.GetImagesByProductIdAsync(productId, firstProductId, secondProductId);
 
-            // Map the product images to response DTOs and return them
+            
             return _mapper.Map<List<ProductImageResponseDto>>(productImages);
         }
+      
+        public async Task<ProductImageResponseDto> UpdateProductImageAsync(int id, ProductImageUploadRequestDto dto)
+        {
+           
+            if (dto.FirstProductId == null && dto.SecondProductId == null && dto.ProductSlId == null)
+            {
+                throw new ArgumentNullException("At least one of FirstProductId, SecondProductId, or ProductSlId must be provided.");
+            }
 
+           
+            var existingImage = await _productImageRepository.GetProductImageByIdAsync(id);
+            if (existingImage == null)
+            {
+                throw new ArgumentException("Product image not found.");
+            }
+
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "ProductImages");
+
+           
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+
+            string newFileName = existingImage.FileName;
+
+            if (dto.File != null)
+            {
+                
+                newFileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.File.FileName);
+                var fullPath = Path.Combine(uploadPath, newFileName);
+
+              
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await dto.File.CopyToAsync(stream);
+                }
+
+       
+                var oldFilePath = Path.Combine(uploadPath, existingImage.FileName);
+                if (File.Exists(oldFilePath))
+                {
+                    try
+                    {
+                        File.Delete(oldFilePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error deleting old file: {ex.Message}");
+                    }
+                }
+            }
+
+           
+            existingImage.FileName = newFileName;
+            existingImage.FileDescription = dto.FileDescription;
+            existingImage.FileExtension = Path.GetExtension(dto.File?.FileName ?? existingImage.FileName);
+            existingImage.FileSizeInBytes = dto.File?.Length ?? existingImage.FileSizeInBytes;
+            existingImage.FilePath = $"/ProductImages/{newFileName}";
+            existingImage.ProductSlId = dto.ProductSlId;
+            existingImage.FirstProductId = dto.FirstProductId;
+            existingImage.SecondProductId = dto.SecondProductId;
+
+            
+            var updatedImage = await _productImageRepository.UpdateProductImageAsync(existingImage);
+
+          
+            return _mapper.Map<ProductImageResponseDto>(updatedImage);
+        }
     }
 }
