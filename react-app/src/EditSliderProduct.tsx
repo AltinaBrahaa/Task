@@ -14,6 +14,7 @@ interface Product {
   newPrice: number;
   oldPrice: number;
   size: string;
+  discount: number;
   productImages: ProductImage[] | null;
   imageUrl?: string;
 }
@@ -87,11 +88,11 @@ const EditSliderProduct = () => {
 
   const handleDelete = async (productSlId: number) => {
     try {
-      // Delete the product and its images in a single call to the backend
+     
       await axios.delete(`http://localhost:5222/api/ProductSl/${productSlId}`);
       console.log(`Product with ID ${productSlId} and associated images deleted successfully.`);
       
-      // Update the state to remove the deleted product
+   
       setProducts((prevProducts) => prevProducts.filter((product) => product.productSlId !== productSlId));
     } catch (error) {
       console.error("Error deleting product or image:", error);
@@ -129,6 +130,7 @@ const EditSliderProduct = () => {
                     <h4>{product.name}</h4>
                     <p className="price">${product.newPrice}</p>
                     <p className="size">Size: {product.size}</p>
+                    <p className="discount">Discount: {product.discount}</p>
                     <button onClick={() => handleEdit(product.productSlId)}>Edit</button>
                     <button className="delete-btn" onClick={() => handleDelete(product.productSlId)}>Delete</button>
                   </div>

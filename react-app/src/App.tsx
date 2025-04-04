@@ -17,7 +17,7 @@ import FirstProduct from "./FirstProduct";
 import SecondProduct from "./SecondProduct";
 import EditSliderProduct from "./EditSliderProduct";
 import EditSecondProduct from "./EditSecondProduct";
-
+import EditFirstProduct from "./EditFirstProduct";
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
                 <Route path="/firstProduct" element={<FirstProduct />} />
                 <Route path="/editSliderProduct" element={<EditSliderProduct />} />
                 <Route path="/editSecondProduct" element={<EditSecondProduct />} />
+                <Route path="/editFirstProduct" element={<EditFirstProduct />} />
                 <Route path="/secondProduct" element={<SecondProduct />} />
                 <Route path="/upload" element={<ImageUpload />} />
                 <Route path="/add-task" element={<AddTask />} />
